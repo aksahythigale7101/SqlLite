@@ -14,6 +14,17 @@ class CRUD_Operation:
 
         Headers=["ID","Name", "Age", "Email", "Course","Date"]
         print("\n" + tabulate(rows, headers=Headers, tablefmt="grid"))
+
+     @staticmethod
+     def InsertData(name, age, email, course):
+        cursor = DB.conn.cursor()
+
+        cursor.execute(
+            "INSERT INTO STUDENTS (name, age, email, course) VALUES (?, ?, ?, ?)",
+            (name, age, email, course)
+        )
+        DB.conn.commit()
+        print(f"Inserted data for {name} successfully!")
             
      @staticmethod
      def UpdateData(student_id, name):

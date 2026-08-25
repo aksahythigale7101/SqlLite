@@ -39,28 +39,7 @@ class CREATE_TABLE:
 
 
 # 4. Actually execute the function
-#CREATE_TABLE.MakeTable()
-
-class InsertData:
-  
-    def InsertData(self,name, age, email, course):
-        cursor = DB.conn.cursor()
-        cursor.execute(
-            "INSERT INTO STUDENTS (name, age, email, course) VALUES (?, ?, ?, ?)",
-            (name, age, email, course)
-        )
-        DB.conn.commit()
-        print(f"Inserted data for {name} successfully!")
+CREATE_TABLE.MakeTable()
 
 
-Is=InsertData()
-Is.InsertData ('Rahul Sharma', 21, 'rahul@example.com', 'Computer Science');
-
-Is.InsertData('Priya Deshmukh', 22, 'priya.d@example.com', 'Data Science');
-Is.InsertData('Aman Verma', 20, 'aman.verma@example.com', 'Computer Science');
-Is.InsertData('Sneha Kulkarni', 23, 'sneha.k@example.com', 'Information Technology');
-Is.InsertData('Rohan Patil', 21, 'rohan.patil@example.com', 'Electronics');
-Is.InsertData('Ananya Joshi', 22, 'ananya.j@example.com', 'Computer Science');
-
-#Is.InsertData('jow', 22, 'Jo.j@example.com', 'Computer Science');
 
