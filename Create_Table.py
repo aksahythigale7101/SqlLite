@@ -75,6 +75,11 @@ class CREATE_COMPANY_TABLE:
          
     def EmployeeTable():
         cursor = compnayDB.conn.cursor()
+
+        compnayDB.conn.execute("PRAGMA foreign_keys = ON;")#प्रॉब्लेम असा आहे की SQLite मध्ये FOREIGN KEY फक्त टेबलमध्ये लिहिल्याने आपोआप enforce होत नाही.
+                                                            #प्रत्येक वेळी connection उघडल्यावर तुला वेगळी command देऊन ते ON करावं लागतं:
+
+
         cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='Employee'")
         table_exists=cursor.fetchone()
         if checkTableExist(table_exists):
