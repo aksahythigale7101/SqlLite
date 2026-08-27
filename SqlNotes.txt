@@ -1,0 +1,15 @@
+﻿1. Primary Key
+2. Foreign Key
+
+3. Unique Key ex-->Email VARCHAR(100) UNIQUE
+4. Composite Key-->Two or more columns together uniquely identify a row.
+                example-->(PRIMARY KEY (StudentId, CourseId))
+5. Candidate Key -->Understand which columns could potentially be a Primary Key.
+                example-->EmployeeId → unique
+                          Email      → unique
+                          Phone      → unique
+                 All could potentially identify an employee, so they are candidate keys. One is selected as the Primary Key.
+6. Alternate Key-->Candidate key that was not selected as the Primary Key.
+               example -->EmployeeId → Primary Key
+                          Email      → Alternate Key
+                          Phone      → Alternate Key
