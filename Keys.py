@@ -1,4 +1,5 @@
 from calendar import c
+from re import I
 import sqlite3
 from token import COMMA
 from Connection import _Db1 as compnayDB
@@ -28,7 +29,7 @@ class keys:
             return False
 
     def ReadData(TableName):
-        
+        print()
         cursor.execute(f"SELECT * FROM {TableName}")
         #cursor.execute("DELETE FROM EMPLOYEE WHERE EmployeeId = ?",(106,))
         compnayDB.conn.commit()
@@ -41,7 +42,7 @@ class keys:
      
 
         
-        print(f"-------------{TableName}-------------")
+        print(f"-------------------{TableName}----------------")
         print(
             "\n"
             + tabulate(
@@ -51,8 +52,8 @@ class keys:
             )
         )
 
-    def Drop_Table():
-        cursor.execute("DROP TABLE IF EXISTS Employee")
+    def Drop_Table(TableName):
+        cursor.execute(f"DROP TABLE IF EXISTS {TableName}")
         compnayDB.conn.commit()
         print("Employee table dropped successfully!")
 
@@ -79,6 +80,18 @@ class keys:
       except Exception as e:
             print(f"Error Name : {type(e).__name__}")
             print(f"Error Details: {e}")
+
+
+    def update_row(TableName,ColumeName,ID):
+      try:
+         cursor.execute(f"UPDATE {TableName} SET DepartmentId={ColumeName} WHERE DepartmentId={ID}")
+         compnayDB.conn.commit()
+      except Exception as e:
+            print(f"Error Name : {type(e).__name__}")
+            print(f"Error Details: {e}")
+
+
+
 
 
 
