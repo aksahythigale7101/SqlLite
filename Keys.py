@@ -30,6 +30,7 @@ class keys:
     def ReadData(TableName):
         
         cursor.execute(f"SELECT * FROM {TableName}")
+        #cursor.execute("DELETE FROM EMPLOYEE WHERE EmployeeId = ?",(106,))
         compnayDB.conn.commit()
         rows = cursor.fetchall()
         # for row in rows:
@@ -37,9 +38,10 @@ class keys:
         Headers = ["DepartmentId ", "DepartmentName"]
         Headers1 = ["EmployeeId ", "Name", "DepartmentId"]
 
-      
+     
+
         
-        print(f"--{TableName}--")
+        print(f"-------------{TableName}-------------")
         print(
             "\n"
             + tabulate(
@@ -64,4 +66,21 @@ class keys:
             compnayDB.conn.commit()
             print("Insert Data Succesfully")
         except Exception as e:
-            print(e)
+            print(f"Error Name : {type(e).__name__}")
+            print(f"Error Details: {e}")
+    
+
+
+    def delete_row(TableName,ColumeName,ID):
+      #cursor.execute("DELETE FROM EMPLOYEE WHERE EmployeeId = ?",(106,))
+      try:
+         cursor.execute(f"DELETE FROM {TableName} WHERE {ColumeName} = ?",(ID,))
+         compnayDB.conn.commit()
+      except Exception as e:
+            print(f"Error Name : {type(e).__name__}")
+            print(f"Error Details: {e}")
+
+
+
+
+
