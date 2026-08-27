@@ -38,11 +38,19 @@ else:
    print("Data Is not Inserted")
 """
 # keys.Drop_Table()
-keys.ReadData("DEPARTMENT")
+keys.ReadData("DEPARTMENT") # Department Table is the Parent because its DepartmentId is referenced.
 
-#keys.InsertEmp(101, "Akshay", 1)
+# keys.InsertEmp(101, "Akshay", 1)
 #keys.InsertEmp(102, "Rahul", 2)
-#keys.InsertEmp(103, "Amit", 1)
+# keys.InsertEmp(103, "Amit", 1)#Duplicate accpect
 #keys.InsertEmp(104, "Sneha", 3)
+#keys.InsertEmp(105, "Abhay", 4)
+#keys.InsertEmp(106, "Ranjeet",  None)# null is accpect until when we cerate table coulmn set as not null
+#keys.InsertEmp(106, "Harsh", 9) # no added becuase is not present DeptID 9 in Deparetment table DepetID  cause of forgien key
 
-keys.ReadData("EMPLOYEE")
+
+#keys.delete_row("DEPARTMENT","DepartmentId",1)# not delete beacuse the Id 1 refreance presetn in employee table
+#keys.delete_row("EMPLOYEE","DepartmentId",1)# not delete beacuse the Id 1 refreance presetn in employee table
+
+keys.ReadData("EMPLOYEE") #Employee Table is the Child because it contains the Foreign Key.
+
