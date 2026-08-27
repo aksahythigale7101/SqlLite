@@ -8,6 +8,7 @@ class ConnectionDatabase:
     def __init__(self, db_name):
         try:
             self.conn = sqlite3.connect(db_name)
+
             #print("Database connected successfully.")
         except sqlite3.Error as e:
             self.conn = None
