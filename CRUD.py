@@ -1,5 +1,5 @@
 import sqlite3
-import stat
+
 from tabulate import tabulate
 from Connection import _Db as DB
 
@@ -17,10 +17,13 @@ class CRUD_Operation:
 
      @staticmethod
      def InsertData(name, age, email, course):
+
+         #ursor.execute("INSERT INTO DEPARTMENT(EmployeeId, DepartmentName) VALUES (%s, %s)", (Eid, DeprtName)) USED IN MYSQL
+
         cursor = DB.conn.cursor()
 
         cursor.execute(
-            "INSERT INTO STUDENTS (name, age, email, course) VALUES (?, ?, ?, ?)",
+            "INSERT INTO STUDENTS (name, age, email, course) VALUES (?, ?, ?, ?)",  #THIS IS TYPE USED SQLlITE
             (name, age, email, course)
         )
         DB.conn.commit()
