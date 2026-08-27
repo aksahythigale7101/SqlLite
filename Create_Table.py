@@ -93,14 +93,21 @@ class CREATE_COMPANY_TABLE:
 
           FOREIGN KEY (DepartmentId)
             REFERENCES Department(DepartmentId)
-
+            ON DELETE CASCADE
+            ON UPDATE CASCADE
+            
           )"""
         )
         compnayDB.conn.commit()
         print ("Employee Table Create Successfully !")
         
 
-
+        '''
+          ON DELETE CASCADE  #using ON DELETE CASCADE parent recorde delete as well as child recode delete
+          ON UPDATE CASCADE #usind ON UPDATE CASCADE parent recode update as well ad childe recode update both table replace 1 and put 10
+          ON DELETE SET NULL #CASCADE IS Used when parent recode is delete but child recode is not delete where refrance recode in child they
+                     #  put  null value example prent table deptId=1 delte then child is not delete insted they put null value
+         '''
 
 
 
