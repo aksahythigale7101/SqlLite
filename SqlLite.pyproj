@@ -24,6 +24,7 @@
     <Compile Include="Connection.py" />
     <Compile Include="Create_Table.py" />
     <Compile Include="CRUD.py" />
+    <Compile Include="Keys.py" />
     <Compile Include="SqlLite.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
