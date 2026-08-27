@@ -2,3 +2,9 @@
 __pycache__/
 *.pyc
 *.user
+idea/.gitignore
+idea/SqlLite.iml
+idea/inspectionProfiles/Project_Default.xml
+idea/inspectionProfiles/profiles_settings.xml
+idea/modules.xml
+idea/vcs.xml
