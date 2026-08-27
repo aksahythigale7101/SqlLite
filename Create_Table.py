@@ -1,7 +1,8 @@
 ﻿import sqlite3
+import stat
 # 1. Import the active database instance
 from Connection import _Db as DB
-
+from Connection import _Db1 as compnayDB
 
 
 # from connectionDb    import    _Db
@@ -17,6 +18,16 @@ class CREATE_TABLE:
     def MakeTable():
         # 2. FIX: Create the cursor INSIDE the function using the imported Dba instance
         cursor = DB.conn.cursor()
+
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='STUDENTS'")
+        table_exists=cursor.fetchone()
+        # if table_exists :
+        #      print("Table Is alredy created")
+        #      return
+        if checkTableExist(table_exists):
+            return
+
+
 
         cursor.execute(
             """
@@ -35,11 +46,78 @@ class CREATE_TABLE:
         # 3. FIX: Commit the changes back to the database using Dba
         DB.conn.commit()
         print("Table accounts created successfully!")
+    
 
+
+
+class CREATE_COMPANY_TABLE:
+   
+    @staticmethod
+    def DepartmentTable():
+         cursor = compnayDB.conn.cursor()
+         
+         cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='DEPARTMENT'")
+         table_exists=cursor.fetchone()
+         # if table_exists :
+         #     print("Table Is alredy created")
+         #     return
+         if checkTableExist(table_exists):
+            return
+
+         cursor.execute("""
+           CREATE TABLE IF NOT EXISTS DEPARTMENT(
+           DepartmentId  INTEGER PRIMARY KEY,
+           DepartmentName TEXT
+            )"""
+         )
+         compnayDB.conn.commit()
+         print ("Department Table Create Successfully !")
+         
+    def EmployeeTable():
+        cursor = compnayDB.conn.cursor()
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='Employee'")
+        table_exists=cursor.fetchone()
+        if checkTableExist(table_exists):
+           return
+        
+        cursor.execute("""
+          CREATE TABLE IF NOT EXISTS Employee(
+          EmployeeId INTEGER PRIMARY KEY,
+          Name TEXT,
+          DepartmentId INTEGER,
+
+          FOREIGN KEY (DepartmentId)
+            REFERENCES Department(DepartmentId)
+
+          )"""
+        )
+        compnayDB.conn.commit()
+        print ("Employee Table Create Successfully !")
+        
+
+
+
+
+
+
+
+def checkTableExist(table_exists):
+      if table_exists :
+             #print("Table Is alredy created")
+             return True
 
 
 # 4. Actually execute the function
 CREATE_TABLE.MakeTable()
+
+CREATE_COMPANY_TABLE.DepartmentTable()
+
+
+CREATE_COMPANY_TABLE.EmployeeTable()    
+
+   
+
+
 
 
 
