@@ -89,6 +89,9 @@ class CREATE_COMPANY_TABLE:
           CREATE TABLE IF NOT EXISTS Employee(
           EmployeeId INTEGER PRIMARY KEY,
           Name TEXT,
+          Age INTEGER,
+          Salary INTEGER,
+          City Text,
           DepartmentId INTEGER,
 
           FOREIGN KEY (DepartmentId)
