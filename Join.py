@@ -10,8 +10,8 @@ import Keys
 cursor=Keys.cursor
 class _join:
     def innerJoin():
-          #query=("SELECT EMPLOYEE.Name, DEPARTMENT.DepartmentName From EMPLOYEE  INNER JOIN DEPARTMENT "
-           #               "ON EMPLOYEE.DepartmentId=DEPARTMENT.DepartmentId")
+          query=("SELECT EMPLOYEE.Name, DEPARTMENT.DepartmentName From EMPLOYEE  INNER JOIN DEPARTMENT "
+                          "ON EMPLOYEE.DepartmentId=DEPARTMENT.DepartmentId")
           query1=("SELECT EmployeeId, NAME,DepartmentName FROM EMPLOYEE INNER JOIN DEPARTMENT "
                   "ON EMPLOYEE.DepartmentId=DEPARTMENT.DepartmentId")
           query2=("SELECT  *  FROM EMPLOYEE E INNER JOIN DEPARTMENT D "
