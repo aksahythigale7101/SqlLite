@@ -1,7 +1,7 @@
 
 
 
-import stat
+
 from Keys import keys
 import Keys
 
@@ -14,6 +14,8 @@ class _join:
            #               "ON EMPLOYEE.DepartmentId=DEPARTMENT.DepartmentId")
           query1=("SELECT EmployeeId, NAME,DepartmentName FROM EMPLOYEE INNER JOIN DEPARTMENT "
                   "ON EMPLOYEE.DepartmentId=DEPARTMENT.DepartmentId")
+          query2=("SELECT  *  FROM EMPLOYEE E INNER JOIN DEPARTMENT D "
+                "ON E.DepartmentId = D.DepartmentId")
           
           _join.ReadRows(query1,"INNER JOIN")
          
