@@ -13,3 +13,94 @@
                example -->EmployeeId → Primary Key
                           Email      → Alternate Key
                           Phone      → Alternate Key
+
+
+
+---------------------------------------------------------
+                 JOIN
+                   |
+       ┌───────────┼───────────┐
+       ↓           ↓           ↓
+   INNER         LEFT        RIGHT
+       ↓           ↓           ↓
+    Match       All Left     All Right
+                   +
+
+              FULL OUTER
+                   ↓
+              Everything
+                   +
+
+               SELF JOIN
+                   ↓
+              Same table
+                   
+
+1. Inner  Join ----->फक्त दोन्ही tables मध्ये matching records असतील तेच records मिळतात.
+                  Employee              Department
+   │                       │
+   │       MATCH           │
+   └─────────┬─────────────┘
+             ↓
+       INNER JOIN
+             ↓
+      Only matching rows
+----------->INNER JOIN returns only the rows that have matching values in both tables.                
+
+
+2.Left Join ------>Left table मधील सर्व records घ्या, आणि right table मध्ये match असेल तर त्याचा data घ्या.
+
+3.Right Join ----->Right table  मधील सर्व records आणा.
+
+4.FULL OUTER JOIN----->Left table चे सर्व records + Right table चे सर्व records.
+            LEFT table
+                 +
+            RIGHT table
+                 +
+             Matching
+
+5.Self Join---->Same table ला स्वतःसोबत JOIN करणे = SELF JOIN.
+Example:   
+EmployeeId | Name   | DepartmentId | ManagerId
+-----------+--------+--------------+----------
+101        | Akshay | 1            | NULL
+102        | Rahul  | 1            | 101
+103        | Amit   | 1            | 101
+104        | Sneha  | 2            | 102        
+                   
+Question -----> Employee आणि त्याचा Manager यांची names दाखवा.
+Ans------>Query Is self Join 
+     SELECT E.Name AS EmployeeName,M.Name AS ManagerName FROM Employee E LEFT JOIN Employee M ON E.ManagerId = M.EmployeeId;
+
+Result:
+
+EmployeeName | ManagerName
+-------------+------------
+Akshay       | NULL
+Rahul        | Akshay
+Amit         | Akshay
+Sneha        | Rahul
+    
+    
+Question----> using another talbe and make self join 
+SELECT E.Name AS EmployeeName,M.Name AS ManagerName,D.DepartmentName FROM Employee E LEFT JOIN Employee M
+                           ON E.ManagerId = M.EmployeeId LEFT JOIN Department D ON E.DepartmentId = D.DepartmentId;
+
+Result:
+
+EmployeeName | ManagerName | DepartmentName
+-------------+-------------+---------------
+Akshay       | NULL        | IT
+Rahul        | Akshay      | IT
+Amit         | Akshay      | IT
+Sneha        | Rahul       | HR
+
+    
+  
+
+
+    
+
+
+    
+                   
