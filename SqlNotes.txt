@@ -157,10 +157,15 @@ Differance between VIEW & CTE
             Viwe->तो database मध्ये named view म्हणून save होतो आणि नंतर पुन्हा वापरता येतो:
                  >Saved query definition--->पुन्हा पुन्हा वापरता येतो
 
- 
+--------------------------------------------------------------------------------------
+Stored Procedure--->Stored Procedure म्हणजे database मध्ये save केलेला SQL code, जो नंतर procedure च्या नावाने पुन्हा execute करता येतो.
+syntax:CREATE PROCEDURE GetEmployees
+       AS
+       BEGIN
+           SELECT * FROM Employee;
+        END;
 
-
-
+How to call------>EXEC GetEmployees;
 
     
                    
