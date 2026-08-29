@@ -110,5 +110,9 @@ from Claues import claues
 #claues.case()
 #claues.CTE()
 
-claues.view()
+#claues.view()
 #claues.DropViwe()
+
+claues.Index()
+#claues.DropIndex()
+claues.IndexIsPresentInDB()
