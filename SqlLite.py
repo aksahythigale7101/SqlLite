@@ -113,6 +113,6 @@ from Claues import claues
 #claues.view()
 #claues.DropViwe()
 
-claues.Index()
+#claues.Index()
 #claues.DropIndex()
 claues.IndexIsPresentInDB()
