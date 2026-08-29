@@ -168,6 +168,7 @@ syntax:CREATE PROCEDURE GetEmployees
 How to call------>EXEC GetEmployees;
 -------------------------------------------------------------------------------------------------
 INDEX----> helps the database find rows faster.
+How to call Index---->म्हणजे INDEX = तुम्ही call करत नाही; database optimizer तो automatically वापरू शकतो.
 Disadvantage--->Indexes consume storage and can make INSERT, UPDATE, and DELETE
                        operations slower because the index also needs to be maintained.
                 >Storage लागते आणि INSERT, UPDATE, DELETE मध्ये overhead वाढू शकतो.
