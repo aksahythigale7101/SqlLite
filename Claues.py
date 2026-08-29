@@ -156,7 +156,7 @@ class claues:
             "CREATE VIEW IF NOT EXISTS DEPTLIST As" " SELECT *  FROM EMPLOYEE "
         )
 
-        # Keys.compnayDB.conn.commit()
+        Keys.compnayDB.conn.commit()
 
         Query4 = ("SELECT * FROM DEPTLIST WHERE DepartmentId = ?")
        
@@ -167,6 +167,39 @@ class claues:
         query = "DROP VIEW DEPTLIST"
         cursor_comp.execute(query)
         Keys.compnayDB.conn.commit()
+
+
+    def Index():
+        NormalIdx=("CREATE INDEX idx_emp_nameColoum"
+               " ON Employee(Name)")
+
+        CompositeIdx = ("CREATE INDEX Compoidx_emp_nameColoum"
+                 " ON Employee(City,salary)")
+
+        UniqueIdx = ("CREATE UNIQUE INDEX Uniqeidx_emp_nameColoum"
+                        " ON Employee(EmployeeId)")
+
+        cursor_comp.execute(UniqueIdx)
+        Keys.compnayDB.conn.commit()
+
+    def DropIndex():
+        query = "DROP INDEX Uniqeidx_emp_nameColoum"
+        cursor_comp.execute(query)
+        Keys.compnayDB.conn.commit()
+
+
+    def IndexIsPresentInDB():
+       query=("EXPLAIN QUERY PLAN SELECT * FROM Employee WHERE Name = 'Akshay' ")
+       #query=("SELECT name FROM sqlite_master WHERE type = 'index'")
+
+
+       claues.ReadData(cursor_comp, query, "", "INDEX")
+
+
+
+
+
+
 
     @staticmethod
     def ReadData(database, Query, parms, comment):
