@@ -189,9 +189,9 @@ class claues:
 
 
     def IndexIsPresentInDB():
-       query=("EXPLAIN QUERY PLAN SELECT * FROM Employee WHERE Name = 'Akshay' ")
+       #query=("EXPLAIN QUERY PLAN SELECT * FROM Employee WHERE Name = 'Akshay' ")
        #query=("SELECT name FROM sqlite_master WHERE type = 'index'")
-
+       query=("SELECT name FROM sqlite_schema  WHERE type = 'view'")
 
        claues.ReadData(cursor_comp, query, "", "INDEX")
 
