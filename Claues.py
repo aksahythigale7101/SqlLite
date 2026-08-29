@@ -8,7 +8,7 @@ cursor_comp = CompanyDB.conn.cursor()
 
 
 class claues:
-    def Groupby():
+    def Groupby(self):
         query = "SELECT Course, COUNT(ID) FROM STUDENTS " "GROUP BY Course"
 
         query1 = (
@@ -161,7 +161,7 @@ class claues:
         Query4 = ("SELECT * FROM DEPTLIST WHERE DepartmentId = ?")
        
      
-        claues.ReadData(cursor_comp, Query4, (1,), "VIEW")
+        claues.ReadData(cursor_comp, Query4, (3,), "VIEW")
 
     def DropViwe():
         query = "DROP VIEW DEPTLIST"
