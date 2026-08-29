@@ -104,5 +104,11 @@ _join.RightJoin()
 
 from Claues import claues
 
-claues.Groupby()
-claues.where()
+#claues.Groupby()
+# claues.where()
+#claues.Union()
+#claues.case()
+#claues.CTE()
+
+claues.view()
+#claues.DropViwe()
