@@ -166,6 +166,20 @@ syntax:CREATE PROCEDURE GetEmployees
         END;
 
 How to call------>EXEC GetEmployees;
+-------------------------------------------------------------------------------------------------
+INDEX----> helps the database find rows faster.
+Disadvantage--->Indexes consume storage and can make INSERT, UPDATE, and DELETE
+                       operations slower because the index also needs to be maintained.
+                >Storage लागते आणि INSERT, UPDATE, DELETE मध्ये overhead वाढू शकतो.
+CREATE INDEX --→ INDEX तयार करणे
+DROP INDEX ---→ INDEX delete करणे DROP INDEX <Inedex Name>;
+Types:
+1. Single-Column INDEX --->एका column वर तयार केलेला INDEX.
+2. UNIQUE INDEX--Duplicate values allow करू नयेत आणि index देखील हवा असेल तर UNIQUE INDEX वापरू शकतो.
+3. Composite INDEX--->एकापेक्षा जास्त columns वर एक INDEX.
+5. Partial INDEX---->सर्व rows वर index न बनवता, specific rows वर index बनवायचा असेल तर Partial Index वापरतो.
+                     INDEX(Salary) WHERE Salary > 50000 Specific rows
+6.Cluster INDEX---->means PRIMARY KEY(Id)   --Unique row identification
 
 
 
