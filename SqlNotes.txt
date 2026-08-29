@@ -1,4 +1,8 @@
-﻿1. Primary Key
+﻿**RoadMap**
+Keys-->Join-->GroupBy-->Having-->Subquery-->Union & Union All-->Case-->CTE-->VIew
+
+-------------------------------------------------------------------------------------------------------------
+1. Primary Key
 2. Foreign Key
 
 3. Unique Key ex-->Email VARCHAR(100) UNIQUE
@@ -106,9 +110,56 @@ Group---->ज्या rows मध्ये same value आहे, त्या r
 
 Having--->GROUP BY groups तयार करतो आणि HAVING त्या groups मधून आवश्यक groups निवडतो.
   
+---------------------------------------------------------------------------------------------------------
+Subquery------>a query inside another query.
+---------------------------------------------------------------------------------------------------------
+Note -->>UNION करताना प्रत्येक SELECT मध्ये same number of columns and also same name असणे आवश्यक आहे.
 
+1.UNION------>दोन SELECT queries चे results एकत्र करतो आणि duplicate rows काढून टाकतो.
+             >UNION combines the results of two or more SELECT queries and removes duplicate rows.
 
+2.UNION ALL-->दोन queries चे results एकत्र करतो, पण duplicates ठेवतो.
+             >UNION ALL combines the results of two or more SELECT queries but keeps duplicate rows.
     
+* What is differance Join & Union:
+                    JOIN = columns combine
+                    UNION = rows combine
+----------------------------------------------------------------------------------------------------------
+CASE---->CASE is used to apply conditions in SQL, similar to if-else in programming.
+        >CASE म्हणजे SQL मधला if-else.
+      CASE
+        ↓
+  WHEN → condition काय?
+        ↓
+  THEN → true असेल तर काय?
+        ↓
+  ELSE → false असेल तर काय?
+        ↓
+       END
+-----------------------------------------------------------------------------------------------------------
+CTE (Common Table Expression)--->CTE is a temporary named result that we can use inside a SQL query.
+                             >CTE म्हणजे query चा temporary result तयार करून त्याला एक नाव देणे आणि नंतर त्या नावाचा वापर करणे.
+Synatx:   WITH Something AS (-- complex query ) 
+          SELECT column name FROM Something;
+------------------------------------------------------------------------------------------------------------
+ VIEW ---->is a virtual table created from a SQL query.                          
+          >VIEW म्हणजे एका SQL query वर आधारित तयार केलेली virtual table.
+Synatx:CREATE VIEW <ViewName> AS
+       statement
+how to call-->Select * from <ViewName>
+Delete View-->DROP VIEW <ViewName>;
+Notes----->Don't parametrize the view at all — just filter when you query it.
+          VIEW ला arguments/Parameter घेण्याची सोय नसते.
+
+Differance between VIEW & CTE
+            CTE ->फक्त त्या SQL statement च्या execution साठी असतो.
+                 >Temporary query result--->त्या statement पुरता
+            Viwe->तो database मध्ये named view म्हणून save होतो आणि नंतर पुन्हा वापरता येतो:
+                 >Saved query definition--->पुन्हा पुन्हा वापरता येतो
+
+ 
+
+
 
 
     
