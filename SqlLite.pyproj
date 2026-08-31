@@ -28,6 +28,7 @@
     <Compile Include="Join.py" />
     <Compile Include="Keys.py" />
     <Compile Include="SqlLite.py" />
+    <Compile Include="WindowFunc.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SqlNotes.txt" />
