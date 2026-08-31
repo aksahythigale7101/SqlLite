@@ -198,7 +198,100 @@ Trigger ----> एखादी घटना घडली की database automati
         UPDATE → OLD + NEW
         DELETE → OLD
 ----------------------------------------------------------------------------------------------------------------------------------------
+TRANSACTION + ACID
+1.TRANSACTION---->A transaction is a group of database operations treated as one unit of work.
+                 >Transaction म्हणजे database मधील अनेक operations एकाच कामाचा भाग म्हणून execute करणे
+Transaction चे 3 मुख्य commands
+                            1.BEGIN TRANSACTION;----->Transaction सुरू करतो.
+                            2.COMMIT------>सगळे operations successful असतील तर changes permanently save करतो.
+                            3.ROLLBACK----->Error झाल्यास changes cancel करतो.
+2.ACID------>All operations in a transaction succeed, or none of them are applied.
+            >Transaction मधील सगळे operations successful झाले पाहिजेत, नाहीतर एकही operation final save होऊ नये.
+Transaction चे चार important properties आहेत:
+            1.A → Atomicity---->Atomicity = All or Nothing
+            2.C → Consistency-->A transaction must take the database from one valid state to another valid state.
+                               >Consistency = Rules remain valid
+                               >Transaction आधी database valid state मध्ये असतो आणि transaction नंतरही database valid state मध्ये असला पाहिजे
+            3.I → Isolation---->Multiple transactions should not improperly interfere with each other.
+                               >एकाच वेळी अनेक transactions चालू असले तरी त्यांनी एकमेकांच्या intermediate/incomplete changes मुळे चुकीचा result मिळवू नये.
+                               >Isolation =  Transactions stay isolated
+            4.D → Durability--->Once a transaction is committed, the changes should survive a crash or restart.
+                               >OMMIT झाल्यानंतर changes permanently saved राहिले पाहिजेत, system restart/crash झाला तरी.
+                               >Durability = Committed data stays
+---------------------------------------------------------------------------------------------------------------------------------------
+Normalization---->Normalization is the process of organizing data in database tables to reduce duplicate data and improve data consistency.
+                 >Normalization म्हणजे database मधील data व्यवस्थित tables मध्ये divide करणे, ज्यामुळे duplicate data कमी होतो आणि data consistency maintain होते.
+*Normalization का करतो?                   
+                      1.Duplicate data कमी करणे
+                      2.Data consistency
+                      3.Update/Delete problems कमी करणे ---यांना interview मध्ये anomalies म्हणतात.
+Anomalies ⭐
+Normalization मध्ये हे interview साठी important आहे.
+Insert Anomaly---->Data insert करण्यासाठी unnecessary दुसरी information आवश्यक असते.
+
+Update Anomaly---->एकच information अनेक rows मध्ये असल्यामुळे ती प्रत्येक row मध्ये update करावी लागते.
+
+Delete Anomaly---->एका record ला delete करताना accidentally दुसरी important information सुद्धा delete होऊ शकते
+
+Normalization मध्ये levels आहेत:
+                 1NF----->First Normal Form  Or A table is in 1NF when each column contains atomic/single values and there are no repeating groups.                                
+                         >एका column मध्ये multiple values ठेवू नका.प्रत्येक column मध्ये एकच atomic/single value असणे आणि repeating groups नसणे म्हणजे 1NF.
+                 2NF----->Second Normal Form means the table is already in 1NF and every non-key
+                            attribute is fully dependent on the entire primary key, not just part of a composite key.
+                         >2NF मध्ये table आधी 1NF मध्ये असते आणि प्रत्येक non-key column हा पूर्ण primary key वर depend असतो. Composite key च्या फक्त एका भागावर depend नसतो.
+| Normal Form | Main Rule             |
+| ----------- | --------------------- |
+| **1NF**     | One cell → One value  |
+| **2NF**     | No Partial Dependency |
+                 3NF----->Transitive Dependency -->एका non-key column मुळे दुसरा non-key column ठरू नये.
+                         >3NF मध्ये table split करतो
+
+Interview shortcut:
+
+1NF = Atomic values
+2NF = No Partial Dependency
+3NF = No Transitive Dependency
 
 
-    
-                   
+*******************Imp This is 2NF*********************
+┌────────────────────────────────────────────────────────┐
+│                        DIAGRAM                         │
+├────────────────────────────────────────────────────────┤
+│        ┌─────────────────┐                             │
+│        │     STUDENT     │                             │
+│        ├─────────────────┤                             │
+│        │ StudentId (PK)  │                             │
+│        │ Name            │                             │
+│        └────────┬────────┘                             │
+│                 │                                      │
+│                 │ StudentId (FK)                       │
+│                 ↓                                      │
+│        ┌─────────────────────────┐                     │
+│        │      STUDENTCOURSE      │                     │
+│        ├─────────────────────────┤                     │
+│        │ StudentId (PK, FK)      │                     │
+│        │ CourseId  (PK, FK)      │                     │
+│        └────────────┬────────────┘                     │
+│                     │                                  │
+│                     │ CourseId (FK)                    │
+│                     ↓                                  │
+│        ┌───────────────────────┐                       │
+│        │        COURSE         │                       │
+│        ├───────────────────────┤                       │
+│        │ CourseId (PK)         │                       │
+│        │ CourseName            │                       │
+│        └───────────────────────┘                       │
+└────────────────────────────────────────────────────────┘
+Normalization = duplicate data कमी करणे
+Denormalization = performance/read speed साठी काही duplicate data intentionally ठेवणे
+-------------------------------------------------------------------------------------------------------------------------------------
+Window Function---->A Window Function performs a calculation across a set of related rows without combining those rows into one row.
+                   >Window Function अनेक rows वर calculation करते, पण प्रत्येक row वेगळी ठेवते.
+** Imp Points------------- GROUP BY rows combine करते, पण Window Function rows combine करत नाही.
+
+OVER() म्हणजे काय?--->SUM(Salary) OVER(...)----> Calculation कोणत्या rows च्या group/window वर करायचे?
+PARTITION BY--->PARTITION BY Department म्हणजे------>प्रत्येक Department ला वेगळा group/window समजा.
+
+ROW_NUMBER()---GropWise Serial Numbers
+
+
