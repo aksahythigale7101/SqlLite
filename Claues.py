@@ -1,5 +1,9 @@
-﻿from Connection import _Db as studentDB
+﻿from ast import Delete
+from traceback import print_exception
+from unittest import result
+from Connection import _Db as studentDB
 from Connection import _Db1 as CompanyDB
+import Connection
 import Keys
 
 
@@ -158,9 +162,8 @@ class claues:
 
         Keys.compnayDB.conn.commit()
 
-        Query4 = ("SELECT * FROM DEPTLIST WHERE DepartmentId = ?")
-       
-     
+        Query4 = "SELECT * FROM DEPTLIST WHERE DepartmentId = ?"
+
         claues.ReadData(cursor_comp, Query4, (3,), "VIEW")
 
     def DropViwe():
@@ -168,16 +171,16 @@ class claues:
         cursor_comp.execute(query)
         Keys.compnayDB.conn.commit()
 
-
     def Index():
-        NormalIdx=("CREATE INDEX idx_emp_nameColoum"
-               " ON Employee(Name)")
+        NormalIdx = "CREATE INDEX idx_emp_nameColoum" " ON Employee(Name)"
 
-        CompositeIdx = ("CREATE INDEX Compoidx_emp_nameColoum"
-                 " ON Employee(City,salary)")
+        CompositeIdx = (
+            "CREATE INDEX Compoidx_emp_nameColoum" " ON Employee(City,salary)"
+        )
 
-        UniqueIdx = ("CREATE UNIQUE INDEX Uniqeidx_emp_nameColoum"
-                        " ON Employee(EmployeeId)")
+        UniqueIdx = (
+            "CREATE UNIQUE INDEX Uniqeidx_emp_nameColoum" " ON Employee(EmployeeId)"
+        )
 
         cursor_comp.execute(UniqueIdx)
         Keys.compnayDB.conn.commit()
@@ -187,19 +190,95 @@ class claues:
         cursor_comp.execute(query)
         Keys.compnayDB.conn.commit()
 
+    def IsPresentInDB():  # index Or view storge list
+        # query=("EXPLAIN QUERY PLAN SELECT * FROM Employee WHERE Name = 'Akshay' ")
+        # query = "SELECT name FROM sqlite_master WHERE type = 'index'"
+        query = "SELECT name FROM sqlite_master WHERE type = 'trigger'"
+        # query=("SELECT name FROM sqlite_schema  WHERE type = 'view'")
 
-    def IndexIsPresentInDB():
-       #query=("EXPLAIN QUERY PLAN SELECT * FROM Employee WHERE Name = 'Akshay' ")
-       #query=("SELECT name FROM sqlite_master WHERE type = 'index'")
-       query=("SELECT name FROM sqlite_schema  WHERE type = 'view'")
+        # claues.ReadData(cursor_comp, query, "", "index")
+        claues.ReadData(cursor_stud, query, "", "trigger")
 
-       claues.ReadData(cursor_comp, query, "", "INDEX")
+    def Triger():
+        try:
+            insertquery = (
+                "CREATE TRIGGER  AfterDeptInsert"
+                " AFTER INSERT ON DEPARTMENT"
+                " BEGIN"
+                " INSERT INTO EMPLOYEE"
+                " (EmployeeID,Name,Age,Salary,City,DepartmentId)"
+                " VALUES"
+                " (112, 'Nidhi', 31, 56000, 'Pune', New.DepartmentId);"
+                " END;"
+            )
+
+            # cursor_comp.execute(insertquery)
+            # CompanyDB.conn.commit()
+
+            UpdateQuery = (
+                "CREATE TRIGGER UpdateStud"
+                " AFTER UPDATE OF Age ON STUDENTS"
+                " BEGIN"
+                " INSERT INTO STUDENTS"
+                " (Name,Age,Email,Course,enrollment_date)"
+                " VALUES"
+                " (old.Name,old.Age,'ak@example.com',old.Course,OLD.enrollment_date);"
+                " END;"
+            )
+
+            DeleteQuery = (
+                "CREATE TRIGGER DeleteStud"
+                " AFTER DELETE ON STUDENTS"
+                " BEGIN"
+                " INSERT INTO STUDENTS"
+                " (id,Name,Age,Email,Course,enrollment_date)"
+                " VALUES"
+                "((SELECT MIN(id + 1) "
+                "FROM STUDENTS "
+                "WHERE (id + 1) NOT IN (SELECT id FROM STUDENTS)), "
+                "'Akshay', 31, 'aks@gmail.com', OLD.Course, OLD.enrollment_date); "
+                " END;"
+            )
+
+            ##Before Insert
+            Query1 = (
+                "CREATE TRIGGER IF NOT EXISTS CheckStudentAge"
+                " BEFORE INSERT ON STUDENTS"
+                " WHEN NEW.age < 18"
+                " BEGIN"
+                " SELECT RAISE(ABORT, 'Student age must be 18 or above');"
+                " END;"
+            )
+            Query2 = (
+                "CREATE TRIGGER IF NOT EXISTS CheckStudentAgeUpdate"
+                " BEFORE INSERT ON STUDENTS"
+                " WHEN NEW.age < 18"
+                " BEGIN"
+                " SELECT RAISE(ABORT, 'Student age must be 18 or above');"
+                " END;"
+            )
 
 
+            cursor_stud.execute(Query2)
+            studentDB.conn.commit()
 
+            print("Trigger Successfully Executed")
+        except Exception as e:
+            print(f"Error Name : {type(e).__name__}")
+            print(f"Error Details: {e}")
 
+    def DropTrigger():
 
+        # cursor_stud.execute("PRAGMA database_list")
+        # print(cursor_stud.fetchall())
 
+        query = "DROP TRIGGER IF EXISTS DeleteStud"
+        # cursor_comp.execute(query)
+        # CompanyDB.conn.commit()
+
+        cursor_stud.execute(query)
+        studentDB.conn.commit()
+        print("Trigger Drop Succedfully")
 
     @staticmethod
     def ReadData(database, Query, parms, comment):
@@ -209,3 +288,15 @@ class claues:
         rows = database.fetchall()
         for row in rows:
             print(row)
+
+    @staticmethod
+    def NextId():
+        cursor_stud.execute(
+            """
+        SELECT MIN(id + 1)
+        FROM STUDENTS
+        WHERE (id + 1) NOT IN (SELECT id FROM STUDENTS)
+    """
+        )
+
+        return cursor_stud.fetchone()[0]
