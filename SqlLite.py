@@ -5,7 +5,8 @@
 import Connection
 from Claues import claues
 import Create_Table
-from CRUD import CRUD_Operation  # option 2 -----import CRUD
+from CRUD import CRUD_Operation
+import WindowFunc  # option 2 -----import CRUD
 
 
 """
@@ -19,13 +20,15 @@ CRUD_Operation.InsertData('Ananya Joshi', 22, 'ananya.j@example.com', 'Computer 
 """
 #CRUD_Operation.InsertData('Raghav Shastri', 15, 'Raghav.s@example.com', 'Artificial Intelligence'); #not insert due to under age trigger occur
 
-print(claues.NextId())
+#print(claues.NextId())
 
 # CRUD_Operation.ChekTableColum()
 #CRUD_Operation.UpdateData("32",4)
 #CRUD_Operation.DeleteData(12)
 # CRUD_Operation.Drop_Table()
-CRUD_Operation.ReadData()
+
+
+#CRUD_Operation.ReadData()
 
 
 from Keys import keys
@@ -45,9 +48,7 @@ from Keys import keys
 
 # keys.Drop_Table("Employee")
 
-keys.ReadData(
-    "DEPARTMENT"
-)  # Department Table is the Parent because its DepartmentId is referenced.
+#keys.ReadData("DEPARTMENT")  # Department Table is the Parent because its DepartmentId is referenced.
 
 """ #old table 
 keys.InsertEmp(101, "Akshay", 1)
@@ -74,9 +75,7 @@ keys.InsertEmp(111, "Ranjeet",25,32500,'Pune', None)# null is accpect until when
 
 # keys.update_row("DEPARTMENT",10,1)
 
-keys.ReadData(
-    "EMPLOYEE"
-)  # Employee Table is the Child because it contains the Foreign Key.
+keys.ReadData("EMPLOYEE")  # Employee Table is the Child because it contains the Foreign Key.
 
 
 # keys.delete_row("DEPARTMENT","DepartmentId",1) using ON DELETE CASCADE parent recorde delete as well as child recode delete
@@ -116,4 +115,10 @@ _join.RightJoin()
 
 #claues.Triger()
 #claues.DropTrigger()
-claues.IsPresentInDB()
+#claues.IsPresentInDB()
+#---------------------Windows Function------------------------
+from WindowFunc import WinFunction
+
+WinFunction.NoramlAggregate()
+WinFunction.Over_Partion()
+WinFunction.ROW_NUMBER()
