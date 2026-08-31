@@ -56,7 +56,7 @@ class WinFunction:
         )
 
         # print(sqlite3.sqlite_version)
-        WinFunction.ReadData(query1, "", "Row_Number")
+        WinFunction.ReadData(query2, "", "Row_Number")
 
     @staticmethod
     def ReadData(Query, parms, comment):
