@@ -1,6 +1,4 @@
-﻿from ast import Delete
-from traceback import print_exception
-from unittest import result
+﻿
 from Connection import _Db as studentDB
 from Connection import _Db1 as CompanyDB
 import Connection
