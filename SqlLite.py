@@ -116,7 +116,7 @@ _join.RightJoin()
 #claues.Triger()
 #claues.DropTrigger()
 #claues.IsPresentInDB()
-#---------------------Windows Function------------------------
+#---------------------Windows Function ------------------------
 from WindowFunc import WinFunction
 
 WinFunction.NoramlAggregate()
