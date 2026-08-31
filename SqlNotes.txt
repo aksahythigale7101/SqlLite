@@ -110,9 +110,9 @@ Group---->ज्या rows मध्ये same value आहे, त्या r
 
 Having--->GROUP BY groups तयार करतो आणि HAVING त्या groups मधून आवश्यक groups निवडतो.
   
----------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 Subquery------>a query inside another query.
----------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 Note -->>UNION करताना प्रत्येक SELECT मध्ये same number of columns and also same name असणे आवश्यक आहे.
 
 1.UNION------>दोन SELECT queries चे results एकत्र करतो आणि duplicate rows काढून टाकतो.
@@ -124,7 +124,7 @@ Note -->>UNION करताना प्रत्येक SELECT मध्य�
 * What is differance Join & Union:
                     JOIN = columns combine
                     UNION = rows combine
-----------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
 CASE---->CASE is used to apply conditions in SQL, similar to if-else in programming.
         >CASE म्हणजे SQL मधला if-else.
       CASE
@@ -136,12 +136,12 @@ CASE---->CASE is used to apply conditions in SQL, similar to if-else in programm
   ELSE → false असेल तर काय?
         ↓
        END
------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------
 CTE (Common Table Expression)--->CTE is a temporary named result that we can use inside a SQL query.
                              >CTE म्हणजे query चा temporary result तयार करून त्याला एक नाव देणे आणि नंतर त्या नावाचा वापर करणे.
 Synatx:   WITH Something AS (-- complex query ) 
           SELECT column name FROM Something;
-------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------
  VIEW ---->is a virtual table created from a SQL query.                          
           >VIEW म्हणजे एका SQL query वर आधारित तयार केलेली virtual table.
 Synatx:CREATE VIEW <ViewName> AS
@@ -157,7 +157,7 @@ Differance between VIEW & CTE
             Viwe->तो database मध्ये named view म्हणून save होतो आणि नंतर पुन्हा वापरता येतो:
                  >Saved query definition--->पुन्हा पुन्हा वापरता येतो
 
---------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
 Stored Procedure--->Stored Procedure म्हणजे database मध्ये save केलेला SQL code, जो नंतर procedure च्या नावाने पुन्हा execute करता येतो.
 syntax:CREATE PROCEDURE GetEmployees
        AS
@@ -166,7 +166,7 @@ syntax:CREATE PROCEDURE GetEmployees
         END;
 
 How to call------>EXEC GetEmployees;
--------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------
 INDEX----> helps the database find rows faster.
 How to call Index---->म्हणजे INDEX = तुम्ही call करत नाही; database optimizer तो automatically वापरू शकतो.
 Disadvantage--->Indexes consume storage and can make INSERT, UPDATE, and DELETE
@@ -181,7 +181,23 @@ Types:
 5. Partial INDEX---->सर्व rows वर index न बनवता, specific rows वर index बनवायचा असेल तर Partial Index वापरतो.
                      INDEX(Salary) WHERE Salary > 50000 Specific rows
 6.Cluster INDEX---->means PRIMARY KEY(Id)   --Unique row identification
+----------------------------------------------------------------------------------------------------------------------------------------
+Trigger ----> एखादी घटना घडली की database automatically काही action करतो.
+            >INSERT UPDATE DELETE --->Trigger या events वर execute होऊ शकतो.
+1.CREATE TRIGGER
+2.AFTER INSERT
+3.AFTER UPDATE
+4.AFTER DELETE                                                 
+5.BEFORE INSERT
+------->NEW आणि OLD म्हणजे काय?
+        NEW → नवीन row ची value
+        OLD → जुनी row ची value
 
+------->Simple Trick 🧠
+        INSERT → NEW
+        UPDATE → OLD + NEW
+        DELETE → OLD
+----------------------------------------------------------------------------------------------------------------------------------------
 
 
     
