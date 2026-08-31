@@ -51,7 +51,8 @@ class CREATE_TABLE:
 
 
 class CREATE_COMPANY_TABLE:
-   
+   #हो 👍 तुमच्या Department + Employee tables  चा example 3NF चा आहे, पण एक important point आहे: 
+   # 2NF आणि 3NF दोन्ही एकाच design मध्ये satisfy होऊ शकतात.
     @staticmethod
     def DepartmentTable():
          cursor = compnayDB.conn.cursor()
