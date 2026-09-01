@@ -152,10 +152,10 @@ class WinFunction:
             "SELECT * ,"
             " LAST_VALUE(Salary)"
             " OVER("
-            #" PARTITION  BY DepartmentId "
+            # " PARTITION  BY DepartmentId "
             "  ORDER BY Salary "
-            " ROWS BETWEEN UNBOUNDED PRECEDING" #पूर्ण window मधल्या पहिल्या row पासून शेवटच्या row पर्यंत बघा.
-            " AND UNBOUNDED FOLLOWING" #म्हणून LAST_VALUE() ला खरोखरच पूर्ण window ची last value मिळते.
+            " ROWS BETWEEN UNBOUNDED PRECEDING"  # पूर्ण window मधल्या पहिल्या row पासून शेवटच्या row पर्यंत बघा.
+            " AND UNBOUNDED FOLLOWING"  # म्हणून LAST_VALUE() ला खरोखरच पूर्ण window ची last value मिळते.
             " )"
             " FROM EMPLOYEE"
         )
@@ -164,7 +164,7 @@ class WinFunction:
             " NTILE(5)"
             # " LAST_VALUE(Salary)"
             " OVER("
-            #" PARTITION  BY DepartmentId "
+            # " PARTITION  BY DepartmentId "
             " ORDER BY Salary DESC)"  # DESC
             " FROM EMPLOYEE"
         )
@@ -194,5 +194,3 @@ class WinFunction:
                 tablefmt="grid",
             )
         )
-
-
