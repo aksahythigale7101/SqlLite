@@ -48,7 +48,7 @@ from Keys import keys
 
 # keys.Drop_Table("Employee")
 
-#keys.ReadData("DEPARTMENT")  # Department Table is the Parent because its DepartmentId is referenced.
+keys.ReadData("DEPARTMENT")  # Department Table is the Parent because its DepartmentId is referenced.
 
 """ #old table 
 keys.InsertEmp(101, "Akshay", 1)
