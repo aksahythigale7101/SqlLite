@@ -4,13 +4,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1a303ace-8c23-4b50-9a06-172cede61323</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>SqlDB\SqlLite.py</StartupFile>
+    <StartupFile>SqlAlchmy\CallAlchmy.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>SqlLite</Name>
     <RootNamespace>SqlLite</RootNamespace>
+    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +22,10 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="SqlAlchmy\CallAlchmy.py" />
     <Compile Include="SqlAlchmy\Junction.py" />
+    <Compile Include="SqlAlchmy\ORM_CRUD.py" />
+    <Compile Include="SqlAlchmy\ORM_Table.py" />
     <Compile Include="SqlDB\Claues.py" />
     <Compile Include="SqlDB\Connection.py" />
     <Compile Include="SqlDB\Create_Table.py" />
@@ -33,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="SqlAlchmy\Alchmy.txt" />
+    <Content Include="SqlAlchmy\StudInfo.json" />
     <Content Include="SqlDB\SqlNotes.txt" />
   </ItemGroup>
   <ItemGroup>
