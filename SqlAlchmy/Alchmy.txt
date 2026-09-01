@@ -1,0 +1,28 @@
+﻿
+#(pip show sqlalchemy) using this show version of sqlalchemy
+SQLAlchemy : SQLAlchemy is a Python library used to communicate with databases.
+           :SQLAlchemy ORM वापरल्यावर Python मध्ये आपण database table ला Python class/object म्हणून work करू शकतो.
+     SQLAlchemy = Python आणि Database यांच्या मधला bridge.   
+                  +-----------------------------------------------+
+                  | Python Code---->SQLAlchemy--->SQLite Database |
+                  +-----------------------------------------------+        
+ORM(Object Relational Mapping): ORM त्या Python object ला database row शी map करते.  म्हणूनच त्याला Object Relational Mapping म्हणतात.                                  
+                 PYTHON CLASS TO DATABASE TABLE MAPPING
+                 ======================================
+                 [Python Student Class]  --------->  [Database 'students' Table]
+                 ---------------------------------------------------------------
+                 Student object          --------->  One single row in the table
+                 id attribute            --------->  id column (INTEGER PRIMARY KEY)
+                 name attribute          --------->  name column (TEXT)
+                 age attribute           --------->  age column (INTEGER)
+*concepts
+Concept	        Meaning
+SQLAlchemy	 -   Python database library
+ORM          -	Python objects ↔ database tables
+Engine       -	Database connection/manage करणारा मुख्य component
+Model	     -   Database table represent करणारी Python class
+Session	     -   Database operations manage करण्यासाठी
+
+1.create_engine():creates the SQLAlchemy Engine. create_engine() Python आणि SQLite database मध्ये connection setup करण्यासाठी वापरतो.
+                 :म्हणजे database ला लगेच connect करणे नाही.
+                 :तो फक्त SQLAlchemy मध्ये connection ची तयारी/configuration करतो.
