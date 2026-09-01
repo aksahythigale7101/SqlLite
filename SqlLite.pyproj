@@ -21,6 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="SqlAlchmy\Junction.py" />
     <Compile Include="SqlDB\Claues.py" />
     <Compile Include="SqlDB\Connection.py" />
     <Compile Include="SqlDB\Create_Table.py" />
@@ -31,9 +32,11 @@
     <Compile Include="SqlDB\WindowFunc.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SqlAlchmy\Alchmy.txt" />
     <Content Include="SqlDB\SqlNotes.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="SqlAlchmy\" />
     <Folder Include="SqlDB\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
