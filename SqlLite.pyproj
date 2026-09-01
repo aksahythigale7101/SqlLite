@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1a303ace-8c23-4b50-9a06-172cede61323</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>SqlLite.py</StartupFile>
+    <StartupFile>SqlDB\SqlLite.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,17 +21,20 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Claues.py" />
-    <Compile Include="Connection.py" />
-    <Compile Include="Create_Table.py" />
-    <Compile Include="CRUD.py" />
-    <Compile Include="Join.py" />
-    <Compile Include="Keys.py" />
-    <Compile Include="SqlLite.py" />
-    <Compile Include="WindowFunc.py" />
+    <Compile Include="SqlDB\Claues.py" />
+    <Compile Include="SqlDB\Connection.py" />
+    <Compile Include="SqlDB\Create_Table.py" />
+    <Compile Include="SqlDB\CRUD.py" />
+    <Compile Include="SqlDB\Join.py" />
+    <Compile Include="SqlDB\Keys.py" />
+    <Compile Include="SqlDB\SqlLite.py" />
+    <Compile Include="SqlDB\WindowFunc.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SqlNotes.txt" />
+    <Content Include="SqlDB\SqlNotes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SqlDB\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
