@@ -290,8 +290,65 @@ Window Function---->A Window Function performs a calculation across a set of rel
 ** Imp Points------------- GROUP BY rows combine करते, पण Window Function rows combine करत नाही.
 
 OVER() म्हणजे काय?--->SUM(Salary) OVER(...)----> Calculation कोणत्या rows च्या group/window वर करायचे?
-PARTITION BY--->PARTITION BY Department म्हणजे------>प्रत्येक Department ला वेगळा group/window समजा.
 
-ROW_NUMBER()---GropWise Serial Numbers
+PARTITION BY--->PARTITION BY Department म्हणजे------>Department नुसार rows चे वेगवेगळे groups/windows तयार करा.
+               >प्रत्येक Department मधील employees ला वेगळे ranking numbers द्या.
+
+1.ROW_NUMBER()---->ROW_NUMBER() gives a unique sequential number to each row based on the order you specify.
+                >ROW_NUMBER() प्रत्येक row ला एक unique number देते.
+
+ROW_NUMBER()------>ROW_NUMBER() = प्रत्येक row ला unique number
+      ↓
+Unique number
+      ↓
+OVER()
+      ↓
+PARTITION BY = कोणत्या group मध्ये? ---->PARTITION BY = group तयार करतो
+      ↓
+ORDER BY = कोणत्या order मध्ये?---->ORDER BY = त्या group मध्ये order ठरवतो
+
+2.RANK()----->gives a rank to each row based on the specified order.
+              >RANK() प्रत्येक employee ला ranking देते. RANK() can create gaps in ranking.
+
+3.DENSE_RANK()-->gives the same rank to rows with the same value, but it does not leave gaps in the ranking.
+                >DENSE_RANK() मध्ये same value असलेल्या rows ला same rank मिळतो, पण पुढचा rank skip होत नाही.
+
+
+*ROW_NUMBER
+    ↓
+1, 2, 3, 4 --->Unique number
+
+*RANK
+  ↓
+1, 2, 2, 4 -->Same rank + Gap
+
+*DENSE_RANK
+    ↓
+1, 2, 2, 3 -->Same rank + No Gap
+
+
+4.LAG()---->LAG() is a window function used to access a value from a previous row within the result set.
+           >LAG() वापरून आपण मागच्या row मधली value current row मध्ये आणू शकतो.
+           >LAG = मागची value
+
+**LAG()-->Previous row-->Previous value 
+Example---->100--200-300-400 using LAG() function----->>Null,100,200,300
+
+5.LEAD()---->LEAD() allows you to access a value from the next row.
+            >LEAD() current row नंतरच्या पुढच्या row मधली value आणतो.
+
+6.PERCENT_RANK()----> tells you the relative position/rank of a row as a percentage within the result.
+                ---->PERCENT_RANK() सांगतो की एखादा employee बाकी employees च्या तुलनेत ranking मध्ये कुठे आहे.
+                    >Interview मध्ये formula लक्षात ठेवा: (RANK - 1) / (TOTAL ROWS - 1)
+7.FIRST_VALUE()----> returns the value from the first row of the window.
+                   >FIRST_VALUE() window मधल्या पहिल्या row ची value प्रत्येक row सोबत दाखवतो.
+8.LAST_VALUE()-----> returns the value from the last row of the window.
+                   >LAST_VALUE() window मधल्या शेवटच्या row ची value आणतो.
+
+9.NTILE(n)----------> divides the rows into n approximately equal groups (buckets).
+                   >NTILE(n) म्हणजे total rows चे n जवळपास समान groups/buckets बनवणे.
+
+
+
 
 
