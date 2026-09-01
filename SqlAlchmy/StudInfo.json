@@ -1,0 +1,108 @@
+[
+  {
+    "name": "Amit Sharma",
+    "age": 28,
+    "gender": "Male",
+    "email": "amit.sharma@example.com",
+    "DeptID": 1
+  },
+  {
+    "name": "Priya Singh",
+    "age": 25,
+    "gender": "Female",
+    "email": "priya.singh@example.com",
+    "DeptID": 2
+  },
+  {
+    "name": "Rahul Verma",
+    "age": 32,
+    "gender": "Male",
+    "email": "rahul.verma@example.com",
+    "DeptID": 1
+  },
+  {
+    "name": "Sneha Patil",
+    "age": 29,
+    "gender": "Female",
+    "email": "sneha.patil@example.com",
+    "DeptID": 3
+  },
+  {
+    "name": "Vikram Joshi",
+    "age": 35,
+    "gender": "Male",
+    "email": "vikram.joshi@example.com",
+    "DeptID": 2
+  },
+  {
+    "name": "Anjali Deshmukh",
+    "age": 27,
+    "gender": "Female",
+    "email": "anjali.d@example.com",
+    "DeptID": 1
+  },
+  {
+    "name": "Rohan Kulkarni",
+    "age": 31,
+    "gender": "Male",
+    "email": "rohan.k@example.com",
+    "DeptID": 4
+  },
+  {
+    "name": "Neha Gupta",
+    "age": 26,
+    "gender": "Female",
+    "email": "neha.gupta@example.com",
+    "DeptID": 3
+  },
+  {
+    "name": "Suresh Nair",
+    "age": 40,
+    "gender": "Male",
+    "email": "suresh.nair@example.com",
+    "DeptID": 2
+  },
+  {
+    "name": "Pooja Reddy",
+    "age": 24,
+    "gender": "Female",
+    "email": "pooja.reddy@example.com",
+    "DeptID": 1
+  },
+  {
+    "name": "Karan Mehta",
+    "age": 33,
+    "gender": "Male",
+    "email": "karan.mehta@example.com",
+    "DeptID": 4
+  },
+  {
+    "name": "Divya Iyer",
+    "age": 30,
+    "gender": "Female",
+    "email": "divya.iyer@example.com",
+    "DeptID": 3
+  },
+  {
+    "name": "Arjun Rao",
+    "age": 36,
+    "gender": "Male",
+    "email": "arjun.rao@example.com",
+    "DeptID": 2
+  },
+  {
+    "name": "Kavita Pillai",
+    "age": 28,
+    "gender": "Female",
+    "email": "kavita.p@example.com",
+    "DeptID": 1
+  },
+  {
+    "name": "Manish Yadav",
+    "age": 34,
+    "gender": "Male",
+    "email": "manish.yadav@example.com",
+    "DeptID": 4
+  }
+]
+
