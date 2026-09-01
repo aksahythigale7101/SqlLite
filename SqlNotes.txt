@@ -1,5 +1,7 @@
 ﻿**RoadMap**
-Keys-->Join-->GroupBy-->Having-->Subquery-->Union & Union All-->Case-->CTE-->VIew
+Keys-->Join-->GroupBy-->Having-->Subquery-->Union & Union All-->Case-->CTE-->VIew-->Stored Procedure-->Index-->Trigger-
+                                                                                                              -->Transaction + ACID-->Normalization-
+                                                                                                                                    -->Window Function
 
 -------------------------------------------------------------------------------------------------------------
 1. Primary Key
@@ -253,9 +255,9 @@ Interview shortcut:
 3NF = No Transitive Dependency
 
 
-*******************Imp This is 2NF*********************
+******************* Imp This is 2NF *********************
 ┌────────────────────────────────────────────────────────┐
-│                        DIAGRAM                         │
+│                  DIAGRAM   2NF                         │
 ├────────────────────────────────────────────────────────┤
 │        ┌─────────────────┐                             │
 │        │     STUDENT     │                             │
@@ -348,7 +350,7 @@ Example---->100--200-300-400 using LAG() function----->>Null,100,200,300
 9.NTILE(n)----------> divides the rows into n approximately equal groups (buckets).
                    >NTILE(n) म्हणजे total rows चे n जवळपास समान groups/buckets बनवणे.
 
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
