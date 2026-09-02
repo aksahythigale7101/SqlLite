@@ -15,6 +15,9 @@ ORM(Object Relational Mapping): ORM त्या Python object ला database r
                  id attribute            --------->  id column (INTEGER PRIMARY KEY)
                  name attribute          --------->  name column (TEXT)
                  age attribute           --------->  age column (INTEGER)
+
+
+
 *concepts
 Concept	        Meaning
 SQLAlchemy	 -   Python database library
@@ -26,3 +29,38 @@ Session	     -   Database operations manage करण्यासाठी
 1.create_engine():creates the SQLAlchemy Engine. create_engine() Python आणि SQLite database मध्ये connection setup करण्यासाठी वापरतो.
                  :म्हणजे database ला लगेच connect करणे नाही.
                  :तो फक्त SQLAlchemy मध्ये connection ची तयारी/configuration करतो.
+2.Engine :is the main connection/communication point between SQLAlchemy and the database.
+         :Engine हा SQLAlchemy आणि SQLite database मधला bridge आहे.   
+         :Database connectivity/communication setup. 
+                        *-----------------------------------------------------*
+                        | Python -->SQLAlchemy -->Engine-->SQLite--->college.db|
+                        *-----------------------------------------------------*
+3.Session:Database operations manage करणारा manager. Example --- Session मार्फत आपण:(CRUS,ROLLBACK,COMMIT)करतो.
+         :Database operations आणि transactions manage करण्यासाठी वापरतो.
+
+4.Session(engine):"या Engine च्या database सोबत काम करण्यासाठी एक Session तयार कर."
+5.Model म्हणजे काय?:SQLAlchemy ORM मध्ये आपण हा table Python class म्हणून define करू.
+                 :proper SQLAlchemy model बनवण्यासाठी DeclarativeBase वापरतो.
+                 :Model म्हणजे database मधल्या table चे Python representation.
+                 :A Model is a Python class that represents a database table.
+6.Base: SQLAlchemy ORM models साठी base class.
+      :Base is the parent class for our SQLAlchemy models.
+
+execute():हे SQLAlchemy Result object देते.पण आपल्याला wrapper Row नको आहे.execute() Multiple Columns साठी(Example stmt = select(Student.name, Student.age)---result = session.execute(stmt)).
+         :execute() फक्त ORM Student objects साठी नाही.जेव्हा आपण multiple columns select करतो तेव्हा ते खूप useful आहे
+scalars(): by using scalars() method,we get the call object  (example-->students = session.scalars(stmt).all())or(stmt = select(Student).where(Student.id == 5))
+--इथे scalars() वापरल्यास फक्त पहिला selected column (name) मिळेल. त्यामुळे multiple selected columns असताना execute() समजून घेणे महत्त्वाचे आहे.      
+Method	                Output
+session.execute(stmt)	Row (tuple) → ro[0].name लागतं
+session.scalars(stmt)	थेट object → ro.name चालतं 
+session.query(stmt)     थेट object → ro.name चालतं(old style)
+
+Code	                   काय मिळतं?
+session.execute(stmt)   →  Result
+result.first()          →  First Row
+result.all()	        →  All Rows
+result.scalars()	    →  Scalar values / ORM entities / Row मधून actual value/object
+result.scalars().all()  →  List of scalar values / ORM objects
+session.scalar(stmt)	→  Single scalar value / ORM object
+result.first()          →  पहिला result
+result.one()            →  exactly one result
