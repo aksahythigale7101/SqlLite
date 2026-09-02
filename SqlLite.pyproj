@@ -25,6 +25,7 @@
     <Compile Include="SqlAlchmy\CallAlchmy.py" />
     <Compile Include="SqlAlchmy\Junction.py" />
     <Compile Include="SqlAlchmy\ORM_CRUD.py" />
+    <Compile Include="SqlAlchmy\ORM_Filter.py" />
     <Compile Include="SqlAlchmy\ORM_Table.py" />
     <Compile Include="SqlDB\Claues.py" />
     <Compile Include="SqlDB\Connection.py" />
