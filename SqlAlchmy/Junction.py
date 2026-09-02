@@ -1,20 +1,44 @@
-﻿from sqlalchemy import create_engine
+﻿import os
+from sqlalchemy import create_engine
 
 
 class ORMConnections:
+
     def __init__(self, db_name):
         try:
-            self.engine = create_engine(db_name)
+
+            db_path = self.find_db_file(db_name)
+            db_path = db_path.replace("\\", "/")
+
+            db_url = f"sqlite:///{db_path}"  # SQLAlchemy साठी बरोबर URL तयार करा
+            # print("Using URL:", db_url)
+
+            self.engine = create_engine(db_url)
             with self.engine.connect() as conn:  # Actual connection करण्यासाठी:
-                print()
-                #print("Database connected")
+                # print("Actual path used:", os.path.abspath(db_name))
+               
+                print("Database connected")
+
         except Exception as e:
             self.engine = None
-            print(f"Database connection failed: {e}")
-            # sqlite3 = Python ची SQLite-specific library.
-            # SQLAlchemy = अनेक databases साठी abstraction/ORM toolkit.
+            print(
+                f"Database connection failed: {e}"
+            )  # sqlite3 = Python ची SQLite-specific library.# SQLAlchemy = अनेक databases साठी abstraction/ORM toolkit.
+
+    @staticmethod
+    def find_db_file(db_name, search_root=None):
+        search_root = search_root or os.path.dirname(
+            os.path.dirname(os.path.abspath(__file__))
+        )
+        for root, dirs, files in os.walk(search_root):
+            dirs[:] = [
+                d for d in dirs if d not in (".venv", ".git", "__pycache__", ".idea")
+            ]
+            if db_name in files:
+                return os.path.join(root, db_name)
+        return None
 
 
 ORMDB = ORMConnections(
-    "sqlite:///SqlAlchmy/School.db"
-)  # आपण SQLite database वापरत आहोत.& /// → हा relative path आहे.(current working directory)
+    "School.db"
+)  # आपण SQLite database वापरत आहोत.& /// → हा relative path आहे.(current working directory)# "sqlite:///School.db"
