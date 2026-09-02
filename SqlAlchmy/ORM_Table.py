@@ -1,17 +1,17 @@
 ﻿
-from SqlAlchmy.Junction import ORMDB as StudentDB
-from sqlalchemy import String, select
+from Junction import ORMDB as StudentDB
+from sqlalchemy import String
 
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
-class Base(DeclarativeBase):
-    pass
+class Base(DeclarativeBase): #पण proper SQLAlchemy model बनवण्यासाठी DeclarativeBase वापरतो.
+    pass                  #Base is the parent class for our SQLAlchemy models.
+                          
 
-
-class student(Base):
+class student(Base): #आता Base च्या माध्यमातून आपले models तयार होतील.Model म्हणजे database मधल्या table चे Python representation.
     #def CreateTable():
-        __tablename__ = "students"
+        __tablename__ = "students"    #Student is a SQLAlchemy ORM model.
         id: Mapped[int] = mapped_column(primary_key=True)
         name: Mapped[str] = mapped_column(
             String(50)
