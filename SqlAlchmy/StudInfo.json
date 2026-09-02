@@ -103,6 +103,13 @@
     "gender": "Male",
     "email": "manish.yadav@example.com",
     "DeptID": 4
+  },
+  {
+    "name": "Naru Modi",
+    "age": 75,
+    "gender": "Male",
+    "email": "naru.m@example.com",
+    "DeptID": 5
   }
 ]
 
