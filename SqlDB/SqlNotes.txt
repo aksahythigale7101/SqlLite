@@ -5,7 +5,8 @@ Keys-->Join-->GroupBy-->Having-->Subquery-->Union & Union All-->Case-->CTE-->VIe
 
 -------------------------------------------------------------------------------------------------------------
 1. Primary Key
-2. Foreign Key
+2. Foreign Key-->Foreign Key ही एक अशी column असते जी एका table मधून दुसऱ्या table च्या primary key ला
+                link/reference करते. यामुळे दोन tables मध्ये relationship तयार होतो.
 
 3. Unique Key ex-->Email VARCHAR(100) UNIQUE
 4. Composite Key-->Two or more columns together uniquely identify a row.
