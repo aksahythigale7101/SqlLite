@@ -1,14 +1,18 @@
 
 import json
+
 from pathlib import Path
 from ORM_CRUD import CRUDOpertions as StudentCRUD
 from ORM_Filter import FilterTable as filter
 
+from ORM_Key import Link
+
+
+
+
+
 # StudentCRUD.DropTable()  # Drop the table if it exists
-
-
 existing_count = StudentCRUD.TableRowsCount()
-
 if existing_count == 0:
     with open(Path(__file__).resolve().parent / "StudInfo.json", "r") as f:
         employees = json.load(f)
@@ -24,5 +28,8 @@ if existing_count == 0:
 
 # StudentCRUD.UpdateTable(7, 50);
 #StudentCRUD.DeleteRow(13)
-StudentCRUD.DisplayData()  # Display the data in the table
-filter.WhereClause()
+#StudentCRUD.DisplayData()  # Display the data in the table
+#filter.WhereClause()
+
+
+Link.relation()
