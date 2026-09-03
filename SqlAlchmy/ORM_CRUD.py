@@ -1,4 +1,4 @@
-﻿from turtle import update
+﻿
 from Junction import ORMDB as StudentDB
 from ORM_Table import student as StudentTable
 from sqlalchemy.orm import Session
