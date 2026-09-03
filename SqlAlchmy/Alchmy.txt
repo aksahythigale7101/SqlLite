@@ -50,10 +50,10 @@ execute():हे SQLAlchemy Result object देते.पण आपल्या
          :execute() फक्त ORM Student objects साठी नाही.जेव्हा आपण multiple columns select करतो तेव्हा ते खूप useful आहे
 scalars(): by using scalars() method,we get the call object  (example-->students = session.scalars(stmt).all())or(stmt = select(Student).where(Student.id == 5))
 --इथे scalars() वापरल्यास फक्त पहिला selected column (name) मिळेल. त्यामुळे multiple selected columns असताना execute() समजून घेणे महत्त्वाचे आहे.      
-Method	                Output
-session.execute(stmt)	Row (tuple) → ro[0].name लागतं
-session.scalars(stmt)	थेट object → ro.name चालतं 
-session.query(stmt)     थेट object → ro.name चालतं(old style)
+     Method	                Output
+     session.execute(stmt)	Row (tuple) → ro[0].name लागतं
+     session.scalars(stmt)	थेट object → ro.name चालतं 
+     session.query(stmt)     थेट object → ro.name चालतं(old style)
 
 Code	                   काय मिळतं?
 session.execute(stmt)   →  Result
@@ -64,3 +64,22 @@ result.scalars().all()  →  List of scalar values / ORM objects
 session.scalar(stmt)	→  Single scalar value / ORM object
 result.first()          →  पहिला result
 result.one()            →  exactly one result
+---------------------------------------------------------------------------------------------------------------------------
+ForeignKey :It references a key in another table and helps enforce referential integrity.
+relationship():It defines an ORM-level relationship between mapped Python objects.
+      --->ForeignKey हा database-level connection आहे आणि relationship() हा ORM/Python-level connection आहे.
+  *_______________________________________________________________________________________________________________________*
+  |ForeignKey     →  Database level,Database connection,Uses column,department_id ,References another table               |
+  |relationship() →  ORM/Python level,Python object connection,Uses Python attribute,department,Provides object navigation|
+  |back_populates()→ Connects both ORM relationship properties                                                            |
+  *_______________________________________________________________________________________________________________________*
+back_populates():It connects the two sides of a bidirectional ORM relationship.
+                :back_populates दोन models मधील relationship च्या दोन्ही sides ला एकमेकांशी connect करते.
+*-----------------------------------------------------------*
+| Method      | Meaning                                     
+| ----------- | --------------------------------------------* 
+|    add()    | Object session मध्ये add करतो                  
+|    flush()  | Pending SQL database कडे execute करतो       
+|   commit()  | Transaction permanently save करतो           
+|   refresh() | Database मधून latest data object मध्ये आणतो 
+*-----------------------------------------------------------*
