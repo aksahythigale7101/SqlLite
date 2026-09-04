@@ -1,13 +1,13 @@
 from Junction import ORMDB as StudentDB
 from ORM_Table import student as StudentTable
-from sqlalchemy import select,or_,and_,not_
+from sqlalchemy import  select,or_,and_,not_,func
 from sqlalchemy.orm import Session
 from tabulate import tabulate
 
 
 class FilterTable:
-    def WhereClause():
-        with Session(StudentDB.engine) as session:
+    def WhereClause(session):
+        #with Session(StudentDB.engine) as session:
             stmt1 = select(StudentTable).where(StudentTable.age > 30)
             stmt2 = select(StudentTable).where(StudentTable.name == "Sneha Patil")
             stmt3 = select(StudentTable).where(StudentTable.age <= 25)
@@ -26,11 +26,26 @@ class FilterTable:
             stmt14 = select(StudentTable).offset(4)#skip then 4
             stmt15 = select(StudentTable).offset(4).limit(6)
 
-            result = session.scalars(stmt15).all()
+            stmt16 =select(StudentTable).where(StudentTable.DeptID==1)
+
+            result = session.scalars(stmt16).all()
+            
             FilterTable.Showdata(result, "WHERE")
                 
-           
-          
+    def Group_Haveing(session):
+         stmt1 = select(StudentTable.gender, func.count(StudentTable.gender)).group_by(StudentTable.gender)
+         stmt2 = select(StudentTable.age,StudentTable.name).where(StudentTable.age>select(func.avg(StudentTable.age)))
+         stmt3 = select(StudentTable.DeptID,StudentTable.gender, func.count(StudentTable.gender)).group_by(StudentTable.DeptID,StudentTable.gender)                
+         stmt4 = select(StudentTable.DeptID,func.count(StudentTable.DeptID)).group_by(StudentTable.DeptID).having(func.count(StudentTable.DeptID)==1)                       
+         stmt5 = select(StudentTable.DeptID,func.Min(StudentTable.age)).group_by(StudentTable.DeptID).having(func.Min(StudentTable.age)>25)                       
+         stmt6 = select(StudentTable.DeptID,func.count(StudentTable.id)).where(StudentTable.gender=="Male") .group_by(StudentTable.DeptID).having(func.count(StudentTable.id)>2)     
+                                                           
+         #result = session.scalars(stmt2).all()
+         result = session.execute(stmt6).all()
+         for i in result:
+          print(i)
+         
+         
        
     @staticmethod
     def Showdata(_result, comment):
@@ -45,3 +60,18 @@ class FilterTable:
         rows = [[s.id, s.name, s.age, s.gender, s.email, s.DeptID] for s in _result]
         headers = ["ID", "Name", "Age", "Gender", "Email", "DeptID"]
         print(tabulate(rows, headers=headers, tablefmt="grid"))
+
+
+
+def FilterCallFunction():
+    try:
+        with Session(StudentDB.engine) as session:
+            FilterTable.WhereClause(session)
+            FilterTable.Group_Haveing(session)
+    finally:
+           session.close
+
+
+
+
+
