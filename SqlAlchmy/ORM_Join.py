@@ -46,23 +46,25 @@ class joins:
                 print(" -", car.model)
 
     def SelectionLoad():
+        print("-----------------------------")
         with Session(CARDB.engine) as session:
          stmt = select(Brand).options(selectinload(Brand.cars))
          brands = session.scalars(stmt).all()
         for brand in brands:
           print(brand.name)
-        for car in brand.cars:    # आधीच loaded — नवीन query नाही
+          for car in brand.cars:    # आधीच loaded — नवीन query नाही
             print(" -", car.model)
 
 
 
     def JoinLoad():
+        print("-----------------------------")
         with Session(CARDB.engine) as session:
          stmt = select(Brand).options(joinedload(Brand.cars))
          brands = session.scalars(stmt).unique().all()   # .unique() compulsory!
          for brand in brands:
           print(brand.name)
-        for car in brand.cars:
+          for car in brand.cars:
             print(" -", car.model)
 
 
