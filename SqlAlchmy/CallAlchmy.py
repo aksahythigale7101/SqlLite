@@ -36,6 +36,6 @@ if existing_count == 0:
 #Link.relation()
 #joins.Join()
 #joins.joinfilter()
-#joins.lazyLoading()
+joins.lazyLoading()
 joins.JoinLoad()
 joins.SelectionLoad()
