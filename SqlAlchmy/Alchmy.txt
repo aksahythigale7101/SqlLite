@@ -83,3 +83,37 @@ back_populates():It connects the two sides of a bidirectional ORM relationship.
 |   commit()  | Transaction permanently save करतो           
 |   refresh() | Database मधून latest data object मध्ये आणतो 
 *-----------------------------------------------------------*
+----------------------------------------------------------------------------------------------------------------------------
+⭐ N+1 Query Problem: N+1 Query Problem avoid करणे खूप important आहे.
+                    :एक query parent records साठी आणि प्रत्येक parent साठी एक additional query related records साठी चालल्यामुळे 1 + N queries होतात. याला N+1 Query Problem म्हणतात.
+Lazy Loading :जेव्हा related data ची गरज पडते तेव्हाच database query चालते, त्याला Lazy Loading म्हणतात. 
+Eager Loading :आपल्याला related data आधीच माहिती आहे की लागणार आहे, तर main data सोबत related data सुद्धा आधीच fetch करणे म्हणजे Eager Loading.
+Eager Methods  1.joinedload() :related table ला JOIN करून data load करण्यासाठी वापरतो.
+             :joinedload() collection relationship (one-to-many) सोबत वापरताना SQLAlchemy मध्ये unique() आवश्यक असू शकते/लागते कारण JOIN मुळे parent rows duplicate होतात.
+                          
+Lazy Loading
+"जेव्हा गरज असेल तेव्हा आण"
+
+        ↓
+
+Problem
+"N+1 queries होऊ शकतात"
+
+        ↓
+
+Eager Loading
+"आधीच related data आण"
+
+        ↓
+       / \
+      /   \
+     ↓     ↓
+joinedload  selectinload
+
+JOIN        Separate SELECT
+            WHERE IN (...)
+
+"SQLAlchemy मध्ये N+1 problem कशी avoid कराल?"
+>"joinedload() किंवा selectinload() वापरून eager loading करू शकतो.
+  joinedload() JOIN वापरतो, तर selectinload() separate SELECT with IN clause वापरतो. 
+  त्यामुळे प्रत्येक parent साठी वेगळी query चालण्याची गरज राहत नाही."
