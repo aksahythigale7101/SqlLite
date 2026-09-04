@@ -2,13 +2,13 @@
 import json
 
 from pathlib import Path
+from shlex import join
 from ORM_CRUD import CRUDOpertions as StudentCRUD
 from ORM_Filter import FilterTable as filter
 
 from ORM_Key import Link
-
-
-
+from ORM_Join import joins
+from SqlAlchmy import ORM_Filter
 
 
 # StudentCRUD.DropTable()  # Drop the table if it exists
@@ -29,7 +29,13 @@ if existing_count == 0:
 # StudentCRUD.UpdateTable(7, 50);
 #StudentCRUD.DeleteRow(13)
 #StudentCRUD.DisplayData()  # Display the data in the table
-#filter.WhereClause()
+
+#ORM_Filter.FilterCallFunction()
 
 
-Link.relation()
+#Link.relation()
+#joins.Join()
+#joins.joinfilter()
+#joins.lazyLoading()
+joins.JoinLoad()
+joins.SelectionLoad()
