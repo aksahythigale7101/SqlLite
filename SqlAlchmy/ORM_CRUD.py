@@ -7,11 +7,12 @@ from sqlalchemy import select, func, text
 from tabulate import tabulate
 from sqlalchemy import update as _update
 from sqlalchemy import delete as _delete
-
-
+import logging
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+logger = logging.getLogger(__name__)
 
 class CRUDOpertions:
-    def InsertTable(_id, _name, _age, _gender, _email, _DeptID):
+    def InsertTable(_id, _name, _age, _gender, _email, _DeptID,_salary,_city):
         try:
             with Session(
                 StudentDB.engine
@@ -23,18 +24,52 @@ class CRUDOpertions:
                     gender=_gender,
                     email=_email,
                     DeptID=_DeptID,
+                    salary=_salary,
+                    city=_city
                 )
+               
                 session.add(new_student)  # "हा object save करण्यासाठी तयार ठेव."
                 session.commit()  # "आता transaction database मध्ये permanently save कर."
-            print("Data inserted successfully.")
+           # print("Data inserted successfully.")
+            logger.info(f"Inserted student id={_id}")
         except Exception as e:
-            print(f"Error inserting data: {e}")
-            print(type(e).__name__)  # Print the type of the exception
+           logger.error(f"Insert failed for id={_id}: {type(e).__name__} - {e}")
+           # print(f"Error inserting data: {e}")
+            #print(type(e).__name__)  # Print the type of the exception
+
+
+    def InsertInBulkRecords(bigData):
+        
+        try:
+          with Session(StudentDB.engine) as session:
+           # session.execute(StudentTable.__table__.insert(),bigData)  
+           
+           bigData = [StudentTable(**record) for record in bigData]
+           session.add_all(bigData)
+
+
+           session.commit()  
+
+          logger.info(f"Bulk inserted {len(bigData)} records.")
+        except Exception as e:
+          logger.error(f"Bulk insert failed: {type(e).__name__} - {e}")
+          #print(f"Error inserting data: {e}")
+          #print(type(e).__name__)  # Print the type of the exception
+
+           
+
+
+
 
     def TableRowsCount():
-        with Session(StudentDB.engine) as session:
+        try:
+           with Session(StudentDB.engine) as session:
             count = session.query(func.count(StudentTable.id)).scalar()
             return count
+        except Exception as e:
+          logger.error(f"Row count query failed: {type(e).__name__} - {e}")
+            #print(f"Error inserting data: {e}")
+            #print(type(e).__name__)  # Print the type of the exception
         
     def UpdateTable(_id, _age):
         try:
@@ -48,10 +83,10 @@ class CRUDOpertions:
                 #      print(f"Session {_id} is not found.")
 
                 # using query through filter and change data
-                # stud1=session.query(StudentTable).filter(StudentTable.id==_id).first()
-                # stud1.age=_age;
-                # session.commit()
-
+                stud1=session.query(StudentTable).filter(StudentTable.id==_id).first()
+                stud1.age=_age;
+                session.commit()
+                logger.info(f"Updated id={_id} -> age={_age}")
                 # using scalars
                 # scal=select(StudentTable).where(StudentTable.id==_id)
                 # stud2=session.scalars(scal).first()
@@ -59,43 +94,48 @@ class CRUDOpertions:
                 # session.commit()
 
                 # using normal method and this is not sql alchmy method
-                stmt = (
-                    _update(StudentTable).where(StudentTable.id == _id).values(age=_age)
-                )
-                stud3 = session.execute(stmt)
+                # stmt = (
+                #     _update(StudentTable).where(StudentTable.id == _id).values(age=_age)
+                # )
+                # stud3 = session.execute(stmt)
                 session.commit()
         except Exception as e:
-            print(f"Error updating data: {e}")
-            print(type(e).__name__)  # Print the type of the exception
+            logger.error(f"Update failed for id={_id}: {type(e).__name__} - {e}")
+            #print(f"Error updating data: {e}")
+            #print(type(e).__name__)  # Print the type of the exception
 
     def DeleteRow(_id):
         try:
             with Session(StudentDB.engine) as session:
-                # stud = session.get(StudentTable, _id)
-                # if stud:
-                #     session.delete(stud)
-                #     session.commit()
-                #     print(f"Session Deleted : {_id} Successfully.")
-                # else:
-                #     print(f"Session {_id} is not found.")
+                stud = session.get(StudentTable, _id)
+                if stud:
+                    session.delete(stud)
+                    logger.info(f"Deleted id={_id}")
+                   # print(f"Session Deleted : {_id} Successfully.")
+                else:
+                    logger.error(f"Delete failed for id={_id}: {type(e).__name__} - {e}")
+                    #print(f"Session {_id} is not found.")
+
+                    
 
                 # scal=select(StudentTable).where(StudentTable.id==_id)
                 # stud2=session.scalars(scal).first()
                 # session.delete(stud2)
                 # session.commit()
 
-                stmt = (
-                    _delete(StudentTable).where(StudentTable.id == _id)
-                )
-                stud3 = session.execute(stmt)
-                session.commit()
+                # stmt = (
+                #     _delete(StudentTable).where(StudentTable.id == _id)
+                # )
+                #stud3 = session.execute(stmt)
+               
 
 
 
                 session.commit()
 
         except Exception as e:
-            print(f"Error updating data: {e}")
+            logger.error(f"Delete failed for id={_id}: {type(e).__name__} - {e}")
+            #print(f"Error updating data: {e}")
             print(type(e).__name__)  # Print the type of the exception
 
     def DropTable():
@@ -114,9 +154,9 @@ class CRUDOpertions:
                 Stud = session.query(StudentTable).all()
 
                 rows = [
-                    [s.id, s.name, s.age, s.gender, s.email, s.DeptID] for s in Stud
+                    [s.id, s.name, s.age, s.gender, s.email, s.DeptID,s.salary,s.city] for s in Stud
                 ]
-                headers = ["ID", "Name", "Age", "Gender", "Email", "DeptID"]
+                headers = ["ID", "Name", "Age", "Gender", "Email", "DeptID","salary","city"]
                 print(tabulate(rows, headers=headers, tablefmt="grid"))
                 # for student in rows:
                 #     print(
