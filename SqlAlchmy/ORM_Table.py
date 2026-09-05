@@ -1,7 +1,7 @@
 ﻿
 from encodings import mac_arabic
 from Junction import ORMDB as StudentDB,ORMCAR as CARDB
-from sqlalchemy import ForeignKey, NotNullable, String
+from sqlalchemy import ForeignKey,Index, NotNullable, String, UniqueConstraint, CheckConstraint
 
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column,relationship
 
@@ -16,10 +16,18 @@ class student(Base): #आता Base च्या माध्यमातून
         id: Mapped[int] = mapped_column(primary_key=True)
         name: Mapped[str] = mapped_column(String(50))# Mapped[str]Python side → this value is a string.
         age: Mapped[int] = mapped_column()
-        gender: Mapped[str] = mapped_column(String(10))
-        email: Mapped[str] = mapped_column(String(100))
+        gender: Mapped[str] = mapped_column(String(50))
+        email: Mapped[str] = mapped_column(String(100), index=True)#, unique=True
         DeptID: Mapped[int] = mapped_column()
+        salary: Mapped[float] = mapped_column()
+        city: Mapped[str] = mapped_column(String(50))
 
+        __table_args__ = (
+        Index("ix_dept_city", "DeptID", "city"),          # composite index 1
+        Index("ix_name_age", "name", "age"),               # composite index 2
+        Index("ix_gender", "gender"),                      # single-column index
+        Index("ix_dept_salary", "DeptID", "salary"),        # composite index 3
+        )
 # name: Mapped[str] = mapped_column(String(50))
 #    ↑                    ↑
 # Python type          Database column
