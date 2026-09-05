@@ -8,6 +8,7 @@ SQLAlchemy : SQLAlchemy is a Python library used to communicate with databases.
                   +-----------------------------------------------+        
 ORM(Object Relational Mapping): ORM त्या Python object ला database row शी map करते.  म्हणूनच त्याला Object Relational Mapping म्हणतात.                                  
                  PYTHON CLASS TO DATABASE TABLE MAPPING
+                              :Python मधल्या objects/classes ला database मधल्या tables सोबत जोडण्याची पद्धत म्हणजे ORM.
                  ======================================
                  [Python Student Class]  --------->  [Database 'students' Table]
                  ---------------------------------------------------------------
@@ -117,3 +118,67 @@ JOIN        Separate SELECT
 >"joinedload() किंवा selectinload() वापरून eager loading करू शकतो.
   joinedload() JOIN वापरतो, तर selectinload() separate SELECT with IN clause वापरतो. 
   त्यामुळे प्रत्येक parent साठी वेगळी query चालण्याची गरज राहत नाही."
+-------------------------------------------------------------------------------------------------------------------
+
+SQLAlchemy Core(Without SqlAlchmy):SQLAlchemy Core मध्ये आपण database tables आणि SQL expressions सोबत अधिक direct पद्धतीने काम करतो.
+               :इथे आपण ORM object वापरत नाही.
+               :आपण Table + SQL expression वापरतो.
+-------------------------------------------------------------------------------------------------------------------
+ ORM कधी वापरायचा?
+
+जेव्हा application मध्ये:
+
+Business logic जास्त आहे
+अनेक relationships आहेत
+CRUD operations आहेत
+Employee, Department सारखे domain objects आहेत
+Maintainable application बनवायचे आहे
+
+तेव्हा ORM चांगला choice आहे.
+
+FastAPI + SQLAlchemy application मध्ये ORM खूप common आहे.
+---------------------------------------------------------------------------------------------------------------------
+10. Core कधी वापरायचा?
+
+जेव्हा:
+
+Complex SQL expressions आहेत
+Bulk operations आहेत
+SQL वर अधिक direct control पाहिजे
+High-performance data processing आहे
+ORM objects ची गरज नाही
+
+तेव्हा Core useful ठरू शकतो
+
+*ORM आणि Core हे पूर्णपणे वेगळे libraries नाहीत.दोन्ही SQLAlchemy चे भाग आहेत.आणि modern SQLAlchemy मध्ये दोन्ही एकत्र वापरणे शक्य आहे.
+                 SQLAlchemy
+                     |
+          ┌──────────┴──────────┐
+          ↓                     ↓
+         ORM                   Core
+          ↓                     ↓
+ Python Objects          SQL Expressions
+------------------------------------------------------------------------------------------------------------------
+Q: SQLAlchemy ORM आणि Core मध्ये फरक काय?
+SQLAlchemy ORM provides an object-oriented way to work with database tables using Python classes and objects, 
+                      while SQLAlchemy Core provides a lower-level SQL expression and table-oriented interface
+                      with more direct control over SQL operations.
+                     :ORM मध्ये Python classes आणि objects वापरून database शी काम करतो, तर Core मध्ये tables
+                      आणि SQL expressions वापरून database शी अधिक direct पद्धतीने काम करतो.
+
+Q: FastAPI project मध्ये ORM का वापराल?
+                     :Python Model -> ORM ->Database
+यामुळे:
+
+Code readable राहतो
+Relationships manage करणे सोपे
+CRUD सोपे
+Business logic सोपे
+Maintainability चांगली
+---------------------------------------------------------------------------------------------------------------------
+Alembic : Database Migration Tool for SQLAlchemy
+Migration: म्हणजे database structure मधील change चा record.
+---------------------------------------------------------------------------------------------------------------------
+
+
+                   
