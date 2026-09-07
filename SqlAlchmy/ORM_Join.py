@@ -9,16 +9,16 @@ class joins:
     def Join():
         with Session(CARDB.engine) as session:
             #Inner Join
-            #rows = session.execute(select(Car, Brand).join(Brand, Car.brand_id == Brand.id))
+            rows = session.execute(select(Car, Brand).join(Brand, Car.brand_id == Brand.id))
             #Left Join
             #rows=session.execute(select(Car,Brand).outerjoin(Brand.cars))
             #Right Join
-            rows=session.execute(select(Car,Brand).outerjoin(Car.brand))
+            #rows=session.execute(select(Car,Brand).outerjoin(Car.brand))
             # for car,brand    in rows:#Inner Join
             #     print(f"Model : {car.model}      ---- Made in : {brand.country}")
             for car,brand  in rows:
                 if car:
-                 print(f"Model : {car.model}") 
+                 print(f"Model : {car.model},Made in : {brand.country}") 
                 else:
                  print(f"Made in : {brand.country}")
 
