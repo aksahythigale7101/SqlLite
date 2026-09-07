@@ -46,7 +46,7 @@ class CRUD_Operation:
         #for column in columns:
          #   print(column)
 
-        #cursor.execute("SELECT sql FROM sqlite_master WHERE type='table' AND name='STUDENTS'")
+        cursor.execute("SELECT sql FROM sqlite_master WHERE type='table' AND name='STUDENTS'")
         #print(cursor.fetchone())
         
 
