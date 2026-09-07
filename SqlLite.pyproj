@@ -23,6 +23,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="SqlAlchmy\CallAlchmy.py" />
+    <Compile Include="SqlAlchmy\funcAssgine.py" />
     <Compile Include="SqlAlchmy\Junction.py" />
     <Compile Include="SqlAlchmy\ORM_CRUD.py" />
     <Compile Include="SqlAlchmy\ORM_Filter.py" />
