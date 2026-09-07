@@ -162,17 +162,20 @@ class CRUDOpertions:
         try:
             with Session(StudentDB.engine) as session:
                 session.execute(text("DROP TABLE IF EXISTS students"))
+                #print(s)
                 session.commit()
+
                 print("Table dropped successfully.")
         except Exception as e:
             print(f"Error dropping table: {e}")
             print(type(e).__name__)  # Print the type of the exception
 
+               
     def DisplayData():
         try:
             with Session(StudentDB.engine) as session:
                 Stud = session.query(StudentTable).all()
-
+             
                 rows = [
                     [s.id, s.name, s.age, s.gender, s.email, s.DeptID,s.salary,s.city] for s in Stud
                 ]
