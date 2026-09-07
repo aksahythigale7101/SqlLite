@@ -1,4 +1,5 @@
-from tkinter import PAGES
+﻿
+from sqlalchemy import  text, inspect
 from Junction import ORMDB as StudentDB
 from ORM_Table import student as StudentTable
 from sqlalchemy import  select,or_,and_,not_,func,text
@@ -123,16 +124,48 @@ class FilterTable:
 def FilterCallFunction(page,perpagerecord):
     try:
         with Session(StudentDB.engine) as session:
-            #FilterTable.WhereClause(session)
+            FilterTable.WhereClause(session)
             #FilterTable.Group_Haveing(session)
             #FilterTable.SubQuery(session)
             #FilterTable.Exist(session)
             #FilterTable.CTE(session)
             #FilterTable.ExplainEmailQuery(session)
-            FilterTable.pagination(session,page,perpagerecord)
+            #FilterTable.pagination(session,page,perpagerecord)
+ 
+ 
+ 
+
     finally:
            session.close
 
 
+def DBSizeClean():
+    with Session(StudentDB.engine) as session:
+       inspector = inspect(StudentDB.engine)
+       print("Tables:", inspector.get_table_names())
+           
+       page_count = session.execute(
+        text("PRAGMA page_count")
+        ).scalar()
 
+        # प्रत्येक page चा size
+       page_size = session.execute(
+         text("PRAGMA page_size")
+        ).scalar()
+
+       # किती pages unused आहेत
+       free_pages = session.execute(
+         text("PRAGMA freelist_count")
+        ).scalar()
+
+       print("Page Count:", page_count)
+       print("Page Size:", page_size)
+       print("Free Pages:", free_pages)
+
+       total_size_mb = (page_count * page_size) / (1024 * 1024)
+       free_size_mb = (free_pages * page_size) / (1024 * 1024)
+
+       print(f"Database Size: {total_size_mb:.2f} MB")
+       print(f"Unused Space: {free_size_mb:.2f} MB")
+       session.execute(text("VACUUM"))
 
