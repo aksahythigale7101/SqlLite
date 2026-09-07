@@ -1,3 +1,4 @@
+from tkinter import PAGES
 from Junction import ORMDB as StudentDB
 from ORM_Table import student as StudentTable
 from sqlalchemy import  select,or_,and_,not_,func,text
@@ -23,8 +24,8 @@ class FilterTable:
             stmt12 = select(StudentTable).order_by(StudentTable.age.desc())
             ###
             stmt13 = select(StudentTable).limit(4)#first 4
-            stmt14 = select(StudentTable).offset(4)#skip then 4
-            stmt15 = select(StudentTable).offset(4).limit(6)
+            stmt14 = select(StudentTable).offset(9998)#skip then 4
+            stmt15 = select(StudentTable).limit(10).offset(9990)
             stmt16 =select(StudentTable).where(StudentTable.id==9999)
             stmt17 =select(StudentTable).where(StudentTable.email=="williamslevi@example.com")
 
@@ -87,6 +88,16 @@ class FilterTable:
             print(row)
 
 
+    def pagination(session,page,pagesize):
+        offset=(page-1)*pagesize
+        stmt15 = select(StudentTable).limit(pagesize).offset(offset)
+        result = session.scalars(stmt15).all()
+        FilterTable.Showdata(result, "Pagination")
+
+          
+            
+
+
 
 
 
@@ -102,13 +113,14 @@ class FilterTable:
         #         f"{student.id},  {student.name},   {student.age }  "
         #         f",{student.gender},  {student.DeptID}"
         #     )
-        rows = [[s.id, s.name, s.age, s.gender, s.email, s.DeptID] for s in _result]
-        headers = ["ID", "Name", "Age", "Gender", "Email", "DeptID"]
+        rows = [[s.id, s.name, s.age, s.gender, s.email, s.DeptID,s.salary,s.city] for s in _result]
+       
+        headers = ["ID", "Name", "Age", "Gender", "Email", "DeptID","salary","city"]
         print(tabulate(rows, headers=headers, tablefmt="grid"))
 
 
 
-def FilterCallFunction():
+def FilterCallFunction(page,perpagerecord):
     try:
         with Session(StudentDB.engine) as session:
             #FilterTable.WhereClause(session)
@@ -116,7 +128,8 @@ def FilterCallFunction():
             #FilterTable.SubQuery(session)
             #FilterTable.Exist(session)
             #FilterTable.CTE(session)
-            FilterTable.ExplainEmailQuery(session)
+            #FilterTable.ExplainEmailQuery(session)
+            FilterTable.pagination(session,page,perpagerecord)
     finally:
            session.close
 
