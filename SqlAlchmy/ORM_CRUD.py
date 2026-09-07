@@ -2,7 +2,7 @@
 from Junction import ORMDB as StudentDB
 from ORM_Table import student as StudentTable
 from sqlalchemy.orm import Session
-
+import time
 from sqlalchemy import select, func, text
 from tabulate import tabulate
 from sqlalchemy import update as _update
@@ -39,27 +39,47 @@ class CRUDOpertions:
 
 
     def InsertInBulkRecords(bigData):
-        
+        total_start = time.perf_counter()
         try:
           with Session(StudentDB.engine) as session:
-           # session.execute(StudentTable.__table__.insert(),bigData)  
+           start = time.perf_counter()
+           session.execute(StudentTable.__table__.insert(),bigData)  
+           object_time = time.perf_counter() - start
+           print(f"ORM objects created in " f"{object_time:.2f} seconds")
            
+
+
+           '''
            bigData = [StudentTable(**record) for record in bigData]
+           object_time = time.perf_counter() - start
+           print(f"ORM objects created in " f"{object_time:.2f} seconds")
+           
+           start = time.perf_counter()
            session.add_all(bigData)
+           add_time = time.perf_counter() - start
+           print(f"session.add_all() took " f"{add_time:.2f} seconds")
+           '''
 
+           
+           
 
+          
+               
+           start = time.perf_counter()
            session.commit()  
+           commit_time = time.perf_counter() - start
+           print(f"session.commit() took " f"{commit_time:.2f} seconds")
+              
+           total_time = time.perf_counter() - total_start
 
-          logger.info(f"Bulk inserted {len(bigData)} records.")
+          logger.info(f"Bulk inserted {len(bigData)} records.<>\nTotal time: {total_time:.2f} seconds.")
+          print(f"Bulk inserted {len(bigData)} records.<>Total time: {total_time:.2f} seconds.")
         except Exception as e:
-          logger.error(f"Bulk insert failed: {type(e).__name__} - {e}")
+           logger.error(f"Bulk insert failed: {type(e).__name__} - {e}")
           #print(f"Error inserting data: {e}")
           #print(type(e).__name__)  # Print the type of the exception
-
-           
-
-
-
+               
+            
 
     def TableRowsCount():
         try:
