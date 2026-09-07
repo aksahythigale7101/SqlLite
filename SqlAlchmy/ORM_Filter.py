@@ -124,13 +124,13 @@ class FilterTable:
 def FilterCallFunction(page,perpagerecord):
     try:
         with Session(StudentDB.engine) as session:
-            FilterTable.WhereClause(session)
+            # FilterTable.WhereClause(session)
             #FilterTable.Group_Haveing(session)
             #FilterTable.SubQuery(session)
             #FilterTable.Exist(session)
             #FilterTable.CTE(session)
             #FilterTable.ExplainEmailQuery(session)
-            #FilterTable.pagination(session,page,perpagerecord)
+            FilterTable.pagination(session,page,perpagerecord)
  
  
  
