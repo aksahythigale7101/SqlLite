@@ -1,16 +1,16 @@
 
 import json
-import os
 from pathlib import Path
 from enum import Enum
-
 from ORM_CRUD import CRUDOpertions as StudentCRUD
 from ORM_Filter import FilterTable
 from ORM_Key import Link
 from ORM_Join import joins
 from SqlAlchmy import ORM_Filter
-
 from typing import Optional
+
+
+
 
 # -----------------------------
 # Load JSON
@@ -67,9 +67,9 @@ class Menu(Enum):
     LAZY_LOADING = 8
     JOIN_LOAD = 9
     SELECTIN_LOAD = 10
-    DROP_TABLE = 11
-    PAGINATION = 12
-
+    PAGINATION = 11
+    DROP_TABLE = 12
+    DBCLEAN=13
     EXIT = 0
 
 
@@ -159,9 +159,13 @@ def handle_menu(choice: Menu) -> bool:
 
     elif choice == Menu.PAGINATION:
         perpageRecored = 20
+
         TotalPage = existing_count // perpageRecored
+        
         print(f"Total Page in My Book : {TotalPage}")
+        
         p_no = int(input("Enter Page Number: "))
+        
         ORM_Filter.FilterCallFunction(p_no, perpageRecored)
 
     elif choice == Menu.DROP_TABLE:
@@ -172,6 +176,17 @@ def handle_menu(choice: Menu) -> bool:
             StudentCRUD.DropTable()
         else:
             print("Drop cancelled.")
+
+    elif choice == Menu.DBCLEAN:
+
+     
+        confirm = input("Are you sure you want to Database are clean? (y/n): ").lower()
+
+        if confirm == "y":
+              ORM_Filter.DBSizeClean()
+        else:
+            print("clean cancelled.")
+
 
     elif choice == Menu.EXIT:
 
