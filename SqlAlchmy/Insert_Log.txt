@@ -1,0 +1,23 @@
+Approch1:
+using this method 
+session.execute(StudentTable.__table__.insert(),bigData)  
+
+ORM objects created in 62.00 seconds
+session.commit() took 3.91 seconds2026-09-07 12:50:38,686 - INFO - Bulk inserted 1000000 records.<>
+Total time: 65.91 seconds.
+
+Bulk inserted 1000000 records.<>Total time: 65.91 seconds.
+10000 students inserted successfully.
+------------------------------------------------------------------------------------------
+Approch2 :
+using this method
+ bigData = [StudentTable(**record) for record in bigData]#10laks recored
+ object_time = time.perf_counter() - start
+
+ORM objects created in 86.86 seconds
+session.add_all() took 26.37 seconds
+session.commit() took 161.39 seconds
+2026-09-07 12:35:34,607 - INFO - Bulk inserted 1000000 records.<>
+Total time: 274.62 seconds.
+Bulk inserted 1000000 records.<>Total time: 274.62 seconds.
+10 laks students inserted successfully.
