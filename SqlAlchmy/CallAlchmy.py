@@ -28,7 +28,7 @@ def main() -> None:
         input("\nPress Enter to continue...")
 
 # -----------------------------
-# Program Start
+# Program Start .
 # -----------------------------
 
 if __name__ == "__main__":
