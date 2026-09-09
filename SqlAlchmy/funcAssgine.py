@@ -19,7 +19,7 @@ existing_count = 0
 
 
 def load_students_from_json() -> list[dict]:
-    json_path = Path(__file__).resolve().parent / "students_10000.json"
+    json_path = Path(__file__).resolve().parent / "students_10k.json"
 
     try:
         with open(json_path, "r") as f:
