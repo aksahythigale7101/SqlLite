@@ -21,7 +21,7 @@ class ORMConnections:
             db_url = f"sqlite:///{db_path}"  # SQLAlchemy साठी बरोबर URL तयार करा
             # print("Using URL:", db_url)
 
-            self.engine = create_engine(db_url)
+            self.engine = create_engine(db_url)#,echo=True---used for logging
             with self.engine.connect() as conn:  # Actual connection करण्यासाठी:
                 # print("Actual path used:", os.path.abspath(db_name))
                 print("Database connected")
